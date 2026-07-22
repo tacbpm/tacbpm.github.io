@@ -1,3 +1,3 @@
-# wmcraftnet.github.io
+# tacbfp.github.io
 
-Static project page for **NIdaR** (anonymous submission template).
+Static project page for **TacBFP** (anonymous submission template).
