@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="TacBFP learns a tactile-conditioned behavior foundation prior for dexterous reorientation and downstream residual latent control.">
+  <meta name="keywords"
+    content="Dexterous manipulation, tactile sensing, behavior priors, policy distillation, reorientation, residual latent control">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TacBFP: A Tactile-conditioned Behavior Foundation Prior Model for Dexterous Reorientation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/script.js"></script>
+
+  <style>
+    .tacbfp-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .tacbfp-card {
+      height: 100%;
+      padding: 1rem;
+      border: 1px solid rgba(0, 100, 150, 0.12);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+    }
+
+    .tacbfp-card-label {
+      display: inline-block;
+      margin-bottom: 0.35rem;
+      color: #006496;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .tacbfp-card strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: #172554;
+      font-size: 1.1rem;
+    }
+
+    .demo-table td:nth-child(2) {
+      min-width: 170px;
+      font-weight: 800;
+      color: #0f3f5f;
+    }
+
+    .demo-tag {
+      display: inline-block;
+      margin: 0.12rem 0.18rem 0.12rem 0;
+      padding: 0.14rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(224, 242, 254, 0.88);
+      color: #075985;
+      font-size: 0.75rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .video-tile h4 {
+      margin-top: 0.55rem;
+      margin-bottom: 0.25rem;
+      color: #12384d;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .video-tile .video-caption-detail {
+      text-align: left;
+    }
+
+    .video-tile video {
+      background: #eaf4fb;
+    }
+
+    .result-note {
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    .comparison-takeaway {
+      margin: 1rem 0 1.25rem;
+      padding: 0.9rem 1rem;
+      border-left: 4px solid #006496;
+      border-radius: 12px;
+      background: rgba(224, 242, 254, 0.42);
+      color: #334155;
+    }
+
+    .real-comparison-group {
+      margin: 1.25rem 0;
+      padding: 1rem;
+      border: 1px solid rgba(0, 100, 150, 0.12);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(248, 251, 255, 0.96), rgba(255, 255, 255, 0.94));
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.07);
+    }
+
+    .real-comparison-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-bottom: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .real-comparison-header h5 {
+      margin: 0;
+      color: #12384d;
+      font-weight: 900;
+    }
+
+    .method-card-ours {
+      border-top: 4px solid #006496;
+    }
+
+    .method-card-notac {
+      border-top: 4px solid #d95f02;
+    }
+
+    .method-card-scratch {
+      border-top: 4px solid #9f1239;
+    }
+
+    .method-pill {
+      display: inline-block;
+      margin-right: 0.35rem;
+      padding: 0.12rem 0.5rem;
+      border-radius: 999px;
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .method-pill.ours {
+      background: #006496;
+    }
+
+    .method-pill.notac {
+      background: #d95f02;
+    }
+
+    .method-pill.scratch {
+      background: #9f1239;
+    }
+
+    .gallery-stage {
+      margin-top: 2.4rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(0, 100, 150, 0.14);
+      scroll-margin-top: 4.5rem;
+    }
+
+    .gallery-stage-title {
+      margin-bottom: 0.4rem;
+      color: #006496;
+      font-weight: 900;
+    }
+
+    .gallery-stage-note {
+      color: #475569;
+      margin-bottom: 1.1rem;
+    }
+
+    @media (max-width: 900px) {
+      .tacbfp-card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="sticky-page-nav" aria-label="Page sections">
+    <div class="sticky-page-nav-inner">
+      <span class="sticky-page-nav-label"></span>
+      <a href="#demo">Demo</a>
+      <a href="#overview">Overview</a>
+      <a href="#prior-gallery">Prior</a>
+      <a href="#downstream-gallery">Downstream</a>
+      <a href="#axis-gallery">Axis Control</a>
+      <a href="#real-comparison-gallery">Real Comparisons</a>
+      <a href="#failure-case-gallery">Failure Cases</a>
+      <a href="#BibTeX">BibTeX</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              <span class="sharp-animated-word"><span class="title-tac">Tac</span><span class="title-bfp">BFP</span></span>: A Tactile-conditioned Behavior Foundation Prior Model for Dexterous Reorientation
+            </h1>
+            <h3 class="title is-4 conference-authors">Anonymous Submission</h3>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Anonymous Authors</span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Anonymous Institution(s)</span>
+            </div>
+            <div class="column has-text-centered">
+              <span class="link-block">
+                <a href="./static/paper/tacbfp.pdf" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <button class="external-link button is-normal is-rounded is-dark" disabled>
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code (TBD)</span>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section nidar-slogan-section" id="demo">
+    <div class="container is-max-desktop has-text-centered">
+      <p class="nidar-slogan">
+        <span class="s1">Tactile Behavior Priors</span>&nbsp;<span class="s3">for</span>&nbsp;<span class="s4">Dexterous</span>&nbsp;<span class="s5">Reorientation</span><span class="s-dot"></span>
+      </p>
+      <p class="nidar-slogan-sub">
+        TacBFP distills multi-scale sphere specialists into a reusable tactile-proprioceptive latent controller, then freezes the prior and decoder so downstream policies learn compact residual latent actions instead of raw joint commands.
+      </p>
+    </div>
+  </section>
+
+  <section class="section teaser-video-section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-video">
+            <video autoplay muted playsinline controls preload="none" data-loop-delay-ms="1000">
+              <source data-src="./static/videos/tacbfp/overview_tacbfp.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <p class="has-text-centered result-note overview-caption" style="margin-top: 0.75rem;">
+            Overview timeline:
+            <a href="#" class="caption-time video-seek-link">0-2.5 s</a> TacBFP motivation,
+            <a href="#" class="caption-time video-seek-link">2.5-6.5 s</a> multi-scale tactile prior,
+            <a href="#" class="caption-time video-seek-link">6.5-13.5 s</a> residual latent downstream reuse,
+            <a href="#" class="caption-time video-seek-link">13.5-17.5 s</a> multi-object rotation,
+            <a href="#" class="caption-time video-seek-link">17.5-25.5 s</a> continuous axis control in simulation,
+            <a href="#" class="caption-time video-seek-link">25.5-32.5 s</a> continuous axis control on the real robot,
+            <a href="#" class="caption-time video-seek-link">32.5-38.5 s</a> single-axis multiface comparisons,
+            <a href="#" class="caption-time video-seek-link">38.5-43.5 s</a> challenging single-axis comparisons,
+            <a href="#" class="caption-time video-seek-link">43.5-48.5 s</a> failure cases,
+            <a href="#" class="caption-time video-seek-link">48.5-51 s</a> takeaway.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="overview">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3" style="color: #006496;font-weight: bolder;">TL;DR</h2>
+          <div class="content has-text-justified">
+            <p>
+              <strong>TacBFP</strong> learns a contact-aware behavior foundation prior for dexterous hands. Instead of training every new manipulation policy from low-level 22-DoF hand actions, TacBFP first trains sphere reorientation specialists across scale factors 0.3 to 1.0, distills them into a single variational latent controller, and reuses the frozen tactile-conditioned prior and decoder for downstream reorientation on harder objects.
+            </p>
+            <p>
+              The downstream policy predicts only a residual latent code around the prior mean. This keeps exploration close to stable contact behaviors while still allowing task-specific adaptation to anisotropic objects, multi-object settings, and commanded rotation axes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tacbfp-card-grid">
+        <div class="tacbfp-card">
+          <span class="tacbfp-card-label">Stage 1</span>
+          <strong>Specialist behavior coverage</strong>
+          <p>Eight sphere-scale teachers expose the hand to different apertures, tactile force patterns, and rolling or regrasping regimes.</p>
+        </div>
+        <div class="tacbfp-card">
+          <span class="tacbfp-card-label">Stage 2</span>
+          <strong>Tactile latent controller</strong>
+          <p>A variational encoder, learned prior, and decoder are conditioned on joint history, previous targets, contact magnitudes, 3D contact locations, and scale cues.</p>
+        </div>
+        <div class="tacbfp-card">
+          <span class="tacbfp-card-label">Stage 3</span>
+          <strong>Residual latent transfer</strong>
+          <p>Downstream policies freeze the prior and decoder, then learn compact residual latent actions for complex objects and rotation objectives.</p>
+        </div>
+      </div>
+
+    <div class="experiment-subsection" id="method">
+      <h2 class="title is-3 has-text-centered" style="color: #006496;font-weight: bolder;">Method Overview</h2>
+      <div class="content has-text-justified">
+        <p>
+          TacBFP treats tactile sensing as part of the motor substrate rather than as an auxiliary observation. The prior predicts a latent action distribution from the current tactile-proprioceptive interaction state; the decoder maps the selected latent code back to hand commands. During downstream learning, the policy outputs <span class="highlight-method">a residual latent action</span> added to the prior mean, so it can adapt intent without abandoning the distilled contact behavior.
+        </p>
+      </div>
+      <div class="ablation-summary-grid">
+        <div class="ablation-summary-card">
+          <span class="ablation-card-label">Teacher family</span>
+          <strong>8 sphere scales</strong>
+          <p>Scale factors 0.3 to 1.0 provide clean, controllable contact behavior coverage.</p>
+        </div>
+        <div class="ablation-summary-card">
+          <span class="ablation-card-label">State</span>
+          <strong>3-frame tactile history</strong>
+          <p>Joint state, previous action targets, contact magnitudes, and 3D contact positions are concatenated into the behavior model.</p>
+        </div>
+        <div class="ablation-summary-card">
+          <span class="ablation-card-label">Latent action</span>
+          <strong>32-D residual code</strong>
+          <p>The downstream policy controls the hand through a compact latent correction around the learned prior.</p>
+        </div>
+        <div class="ablation-summary-card">
+          <span class="ablation-card-label">Reuse</span>
+          <strong>Frozen prior + decoder</strong>
+          <p>The same tactile motor substrate transfers to object reorientation, multi-object settings, and axis-conditioned rotation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="experiment-subsection" id="results">
+      <h2 class="title is-3 has-text-centered" style="color: #006496;font-weight: bolder;">Representative Results</h2>
+      <div class="content has-text-justified">
+        <p>
+          The table below condenses the main quantitative claims from the paper into reviewer-facing takeaways. It highlights where the tactile-conditioned prior improves transfer, rather than listing every object-specific column on the project page.
+        </p>
+      </div>
+      <div class="ablation-table-wrap">
+        <table class="ablation-table">
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>Setting</th>
+              <th>Key number</th>
+              <th>Takeaway</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="ablation-best-row">
+              <td>Generalist coverage</td>
+              <td>Seen sphere scales 0.3-1.0</td>
+              <td><strong>95.62% success</strong></td>
+              <td>One distilled prior preserves the multi-scale teacher family.</td>
+            </tr>
+            <tr>
+              <td>Extrapolation</td>
+              <td>Held-out scales and unseen objects</td>
+              <td><strong>60.38% success</strong> vs. 40.05% w/o tactile</td>
+              <td>Tactile conditioning improves transfer beyond the sphere teachers.</td>
+            </tr>
+            <tr>
+              <td>Downstream transfer</td>
+              <td>Complex-object AnyPose-to-AnyPose</td>
+              <td><strong>73.30% multi-object success</strong> with frozen decoder</td>
+              <td>Residual latent control remains stable when several object geometries are trained jointly.</td>
+            </tr>
+            <tr>
+              <td>Axis-conditioned reuse</td>
+              <td>Continuous commanded rotation</td>
+              <td><strong>342.39 deg</strong> on block_03 z-axis</td>
+              <td>The learned substrate can be reused for rotation rewards, not only target-pose matching.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="section experiment-section" id="gallery">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered" style="color: #006496;font-weight: bolder;">Qualitative Demonstrations</h2>
+      <div class="content has-text-justified">
+        <p>
+          The gallery follows the same progression as TacBFP itself: first learning a reusable tactile behavior prior, then reusing it for downstream object transfer, and finally conditioning the reused prior on commanded rotation axes in simulation and on the real robot.
+        </p>
+      </div>
+
+      <div class="gallery-stage" id="prior-gallery">
+        <h3 class="title is-4 gallery-stage-title">Generalist Prior Coverage</h3>
+        <p class="gallery-stage-note">
+          TacBFP starts from multi-scale sphere teachers, where different object sizes induce different apertures, tactile forces, and rolling contacts.
+        </p>
+        <div class="experiment-subsection">
+          <h4 class="title is-5 subsection-title">Generalist prior over sphere sizes</h4>
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/multi_sphere.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>Multi-scale sphere reorientation</h4>
+              <p class="video-caption-detail">The distilled TacBFP generalist handles multiple sphere scales, illustrating reusable contact behavior before downstream finetuning.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="gallery-stage" id="downstream-gallery">
+        <h3 class="title is-4 gallery-stage-title">Downstream Reuse for New Objects</h3>
+        <p class="gallery-stage-note">
+          With the prior and decoder frozen, downstream policies only learn compact residual latent actions for complex shapes and multi-object reuse.
+        </p>
+        <div class="experiment-subsection">
+          <h4 class="title is-5 subsection-title">AnyPose-to-AnyPose downstream transfer</h4>
+        <div class="content has-text-justified">
+          <p>
+            These rollouts use the TacBFP prior and decoder as a frozen motor substrate while a downstream residual latent policy adapts to different object geometries.
+          </p>
+        </div>
+        <div class="columns is-centered is-multiline is-variable is-3 video-grid">
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/a2a_block03.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>block_03</h4>
+              <p class="video-caption-detail">Residual latent policy transfers the sphere-trained contact prior to a block-shaped downstream object.</p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/a2a_block05.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>block_05</h4>
+              <p class="video-caption-detail">A harder block variant tests whether the latent prior remains useful under changed contact affordances.</p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/a2a_bottle01.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>bottle_01</h4>
+              <p class="video-caption-detail">The downstream controller reuses tactile behavior on an elongated object with different rolling dynamics.</p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/a2a_cube.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>cube</h4>
+              <p class="video-caption-detail">The policy adjusts contact on a sharp-edged object rather than relying on sphere-specific rolling.</p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/a2a_fruit02.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>fruit_02</h4>
+              <p class="video-caption-detail">The same latent interface adapts to an irregular object while preserving stable contact behavior.</p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/a2a_trashcan02.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>trash_can_02</h4>
+              <p class="video-caption-detail">This downstream rollout tests TacBFP on a broader, container-like object whose contact geometry differs from the sphere teachers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="experiment-subsection">
+        <h4 class="title is-5 subsection-title">Multi-object downstream reuse</h4>
+        <div class="columns is-centered is-multiline is-variable is-3 video-grid">
+          <div class="column is-four-fifths">
+            <div class="video-tile">
+              <video class="video-focus-left" autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/multi_type.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>Multi-object downstream rotation</h4>
+              <p class="video-caption-detail">A downstream policy rotates five different objects in the same setting, testing whether TacBFP's contact prior can support joint object coverage.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="gallery-stage" id="axis-gallery">
+        <h3 class="title is-4 gallery-stage-title">Axis-conditioned Reorientation</h3>
+        <p class="gallery-stage-note">
+          Continuous commanded-axis videos are grouped by domain: simulation first, followed by real-robot rollouts. The policy responds to <strong class="highlight-method">keyboard-controlled axis commands</strong> and performs <strong class="highlight-good">smooth, seamless transitions</strong> as the requested rotation axis changes.
+        </p>
+        <div class="experiment-subsection">
+          <h4 class="title is-5 subsection-title">Simulated axis-conditioned rotation</h4>
+        <div class="content has-text-justified">
+          <p>
+            These simulation rollouts follow the automatic recording schedule used by the axis-conditioned downstream evaluation script: each object receives <strong class="axis-x">+x/-x</strong>, <strong class="axis-y">+y/-y</strong>, and <strong class="axis-z">+z/-z</strong> commands. The same residual-latent controller changes direction without resetting the grasp, illustrating <strong class="highlight-good">continuous contact through axis switches</strong>.
+          </p>
+        </div>
+        <div class="columns is-multiline is-variable is-3 video-grid">
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/axis_condition/block_03.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>block_03, commanded-axis rotation</h4>
+              <p class="video-caption-detail">
+                Simulation rollout under the fixed axis schedule:
+                <a href="#" class="caption-time video-seek-link">0-10 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">10-20 s</a> +y,
+                <a href="#" class="caption-time video-seek-link">20-30 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">30-40 s</a> -x,
+                <a href="#" class="caption-time video-seek-link">40-50 s</a> -y,
+                <a href="#" class="caption-time video-seek-link">50-60 s</a> -z.
+              </p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/axis_condition/block_08.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>block_08, commanded-axis rotation</h4>
+              <p class="video-caption-detail">
+                A second block geometry tests whether the axis-conditioned policy preserves contact while the command changes:
+                <a href="#" class="caption-time video-seek-link">0-10 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">10-20 s</a> +y,
+                <a href="#" class="caption-time video-seek-link">20-30 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">30-40 s</a> -x,
+                <a href="#" class="caption-time video-seek-link">40-50 s</a> -y,
+                <a href="#" class="caption-time video-seek-link">50-60 s</a> -z.
+              </p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/axis_condition/block_14.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>block_14, commanded-axis rotation</h4>
+              <p class="video-caption-detail">
+                This block variant highlights reuse of the frozen tactile prior under a six-axis command sweep:
+                <a href="#" class="caption-time video-seek-link">0-10 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">10-20 s</a> +y,
+                <a href="#" class="caption-time video-seek-link">20-30 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">30-40 s</a> -x,
+                <a href="#" class="caption-time video-seek-link">40-50 s</a> -y,
+                <a href="#" class="caption-time video-seek-link">50-60 s</a> -z.
+              </p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/axis_condition/bottle_02.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>bottle_02, commanded-axis rotation</h4>
+              <p class="video-caption-detail">
+                The elongated bottle object stresses the downstream policy across changing rotation axes:
+                <a href="#" class="caption-time video-seek-link">0-10 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">10-20 s</a> +y,
+                <a href="#" class="caption-time video-seek-link">20-30 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">30-40 s</a> -x,
+                <a href="#" class="caption-time video-seek-link">40-50 s</a> -y,
+                <a href="#" class="caption-time video-seek-link">50-60 s</a> -z.
+              </p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/axis_condition/corner_block.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>corner block, commanded-axis rotation</h4>
+              <p class="video-caption-detail">
+                Sharp edges make the commanded-axis changes depend on stable regrasping and contact regulation:
+                <a href="#" class="caption-time video-seek-link">0-10 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">10-20 s</a> +y,
+                <a href="#" class="caption-time video-seek-link">20-30 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">30-40 s</a> -x,
+                <a href="#" class="caption-time video-seek-link">40-50 s</a> -y,
+                <a href="#" class="caption-time video-seek-link">50-60 s</a> -z.
+              </p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/sim/axis_condition/strawberry.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>strawberry, commanded-axis rotation</h4>
+              <p class="video-caption-detail">
+                The irregular strawberry shape tests whether the axis-conditioned policy remains stable beyond block-like objects:
+                <a href="#" class="caption-time video-seek-link">0-10 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">10-20 s</a> +y,
+                <a href="#" class="caption-time video-seek-link">20-30 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">30-40 s</a> -x,
+                <a href="#" class="caption-time video-seek-link">40-50 s</a> -y,
+                <a href="#" class="caption-time video-seek-link">50-60 s</a> -z.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="experiment-subsection">
+        <h4 class="title is-5 subsection-title">Real robot axis-conditioned rotation</h4>
+        <div class="content has-text-justified">
+          <p>
+            These real-robot rollouts evaluate whether the downstream policy can condition on a commanded rotation axis while TacBFP supplies stable tactile contact behavior through the hand prior.
+          </p>
+        </div>
+        <div class="columns is-multiline is-variable is-3 video-grid">
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/real/axis/small_tennis_axis.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>Small tennis ball (d=4 cm)</h4>
+              <p class="video-caption-detail">
+                The smallest tennis ball stresses contact regulation under repeated axis changes:
+                <a href="#" class="caption-time video-seek-link">0-5 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">5-20 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">20-38 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">38-50 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">50-56.4 s</a> -y.
+              </p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/real/axis/middle_tennis_axis.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>Middle tennis ball (d=5 cm)</h4>
+              <p class="video-caption-detail">
+                The medium tennis ball tests repeated axis changes on a rounded object:
+                <a href="#" class="caption-time video-seek-link">0-10 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">10-22 s</a> -z,
+                <a href="#" class="caption-time video-seek-link">22-40 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">40-51 s</a> -x,
+                <a href="#" class="caption-time video-seek-link">51-70 s</a> -y,
+                <a href="#" class="caption-time video-seek-link">70-79.6 s</a> +y.
+              </p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/real/axis/tennis_axis.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>Standard tennis ball (d=6.5 cm)</h4>
+              <p class="video-caption-detail">
+                The standard tennis ball video is trimmed to the commanded-axis portion:
+                <a href="#" class="caption-time video-seek-link">0-10 s</a> +y,
+                <a href="#" class="caption-time video-seek-link">10-25 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">25-55 s</a> -z,
+                <a href="#" class="caption-time video-seek-link">55-87 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">87-94.5 s</a> -x.
+              </p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/real/axis/corner_block_axis.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>Corner block</h4>
+              <p class="video-caption-detail">
+                The physical hand maintains edge contacts while following scheduled commanded axes:
+                <a href="#" class="caption-time video-seek-link">0-9 s</a> +y,
+                <a href="#" class="caption-time video-seek-link">9-17 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">17-26 s</a> -z,
+                <a href="#" class="caption-time video-seek-link">26-32 s</a> +x.
+              </p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/real/axis/multiface_axis.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>Multiface object</h4>
+              <p class="video-caption-detail">
+                The controller adapts to changing face contacts under the axis schedule:
+                <a href="#" class="caption-time video-seek-link">0-10 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">10-20 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">20-30 s</a> +y,
+                <a href="#" class="caption-time video-seek-link">30-40 s</a> -z,
+                <a href="#" class="caption-time video-seek-link">40-48 s</a> -x.
+              </p>
+            </div>
+          </div>
+          <div class="column is-one-third-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/real/axis/strawberry_axis.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4>Strawberry</h4>
+              <p class="video-caption-detail">
+                The irregular fruit shape tests axis-conditioned reuse on non-spherical contacts:
+                <a href="#" class="caption-time video-seek-link">0-8 s</a> +x,
+                <a href="#" class="caption-time video-seek-link">8-20 s</a> +z,
+                <a href="#" class="caption-time video-seek-link">20-26 s</a> -z.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="gallery-stage" id="real-comparison-gallery">
+        <h3 class="title is-4 gallery-stage-title">Real Single-Axis Comparisons</h3>
+        <p class="gallery-stage-note">
+          These clips isolate individual real-robot axis commands, in contrast to the continuous command schedules shown above.
+        </p>
+        <div class="content has-text-justified">
+          <p>
+            The following videos compare <span class="method-pill ours">TacBFP</span>, <span class="method-pill notac">No tactile</span>, and <span class="method-pill scratch">From scratch</span> on isolated real-robot axis commands. The comparison highlights that <strong class="highlight-method">tactile-conditioned residual latent control</strong> maintains usable rolling contact, while the baselines are more likely to show <strong class="highlight-warning">slow progress</strong>, <strong class="highlight-bad">drops</strong>, or <strong class="highlight-cause">out-of-distribution postures</strong>.
+          </p>
+        </div>
+
+        <div class="real-comparison-group">
+          <div class="real-comparison-header">
+            <h5>Multiface object, +x command</h5>
+          </div>
+          <div class="columns is-multiline is-variable is-3 video-grid">
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-ours">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_pos_x_ours.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill ours">TacBFP</span>Stable rolling</h4>
+                <p class="video-caption-detail"><strong class="highlight-method">Tactile feedback</strong> keeps the multiface object in <strong class="highlight-good">controllable rolling contact</strong>.</p>
+              </div>
+            </div>
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-notac">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_pos_x_notac.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill notac">No tactile</span>Drop</h4>
+                <p class="video-caption-detail">Without contact feedback, <strong class="highlight-warning">contact drift</strong> quickly becomes an object <strong class="highlight-bad">drop</strong>.</p>
+              </div>
+            </div>
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-scratch">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_pos_x_scratch.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill scratch">From scratch</span>Slow</h4>
+                <p class="video-caption-detail">Raw-action learning produces <strong class="highlight-warning">weaker and slower progress</strong> under the same command.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="real-comparison-group">
+          <div class="real-comparison-header">
+            <h5>Multiface object, +y command</h5>
+          </div>
+          <div class="columns is-multiline is-variable is-3 video-grid">
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-ours">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_pos_y_ours.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill ours">TacBFP</span>Stable rolling</h4>
+                <p class="video-caption-detail">The tactile prior recovers <strong class="highlight-good">usable rolling contact</strong> on a faceted object.</p>
+              </div>
+            </div>
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-notac">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_pos_y_notac.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill notac">No tactile</span>Stuck</h4>
+                <p class="video-caption-detail">The object becomes <strong class="highlight-bad">stuck</strong>, trapped between fingers instead of rotating.</p>
+              </div>
+            </div>
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-scratch">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_pos_y_scratch.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill scratch">From scratch</span>Slow</h4>
+                <p class="video-caption-detail">The raw-action policy keeps partial contact but makes <strong class="highlight-warning">slow progress</strong> under the +y command.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="real-comparison-group">
+          <div class="real-comparison-header">
+            <h5>Multiface object, -x command</h5>
+          </div>
+          <div class="columns is-multiline is-variable is-3 video-grid">
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-ours">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_neg_x_ours.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill ours">TacBFP</span>Command following</h4>
+                <p class="video-caption-detail">TacBFP completes the recorded segment while maintaining <strong class="highlight-good">stable contact</strong>.</p>
+              </div>
+            </div>
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-notac">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_neg_x_notac.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill notac">No tactile</span>Slow</h4>
+                <p class="video-caption-detail">The policy keeps partial contact but makes <strong class="highlight-warning">slow, side-biased progress</strong>.</p>
+              </div>
+            </div>
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-scratch">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_neg_x_scratch.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill scratch">From scratch</span>Slow</h4>
+                <p class="video-caption-detail">The raw-action policy keeps partial contact but makes <strong class="highlight-warning">slow progress</strong> instead of stable commanded rotation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="real-comparison-group">
+          <div class="real-comparison-header">
+            <h5>Small tennis ball, z-axis command</h5>
+          </div>
+          <div class="columns is-multiline is-variable is-3 video-grid">
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-ours">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/smalltennis_z_ours.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill ours">TacBFP</span>Stable z-axis</h4>
+                <p class="video-caption-detail">TacBFP keeps <strong class="highlight-good">contact and rotation stable</strong> on the small ball.</p>
+              </div>
+            </div>
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-notac">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/smalltennis_z_notac.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill notac">No tactile</span>Slow z-axis</h4>
+                <p class="video-caption-detail">The no-tactile policy remains <strong class="highlight-warning">slow</strong> when small-object contact regulation is harder.</p>
+              </div>
+            </div>
+            <div class="column is-one-third-desktop is-full-tablet">
+              <div class="video-tile method-card-scratch">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/smalltennis_z_scratch.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4><span class="method-pill scratch">From scratch</span>OOD/drop</h4>
+                <p class="video-caption-detail">The from-scratch policy leaves the contact regime and <strong class="highlight-bad">drops the ball</strong>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="gallery-stage" id="failure-case-gallery">
+        <h3 class="title is-4 gallery-stage-title">Failure Cases</h3>
+        <p class="gallery-stage-note">
+          Representative baseline failures show how real contact errors accumulate into drops, stuck grasps, slow rotations, and out-of-distribution hand states.
+        </p>
+        <div class="comparison-takeaway content">
+          <p>
+            <strong class="highlight-bad">Failure summary.</strong> Across the recorded <span class="method-pill notac">No tactile</span> and <span class="method-pill scratch">From scratch</span> trials, failures mostly appear as <strong class="highlight-bad">drops after contact drift</strong>, <strong class="highlight-warning">stuck configurations</strong>, <strong class="highlight-warning">slow or side-biased rotations</strong>, and <strong class="highlight-cause">out-of-distribution hand postures</strong>. In contrast, <span class="method-pill ours">TacBFP</span> uses tactile feedback to stabilize the reusable prior and keep exploration near contact-preserving behaviors.
+          </p>
+        </div>
+        <div class="columns is-multiline is-variable is-3 video-grid">
+          <div class="column is-one-quarter-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/failure_notac_cornerblock_pos_y_drop.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4><span class="method-pill notac">No tactile</span>corner block +y</h4>
+              <p class="video-caption-detail"><strong class="highlight-warning">Edge contact drift</strong> accumulates until the block is <strong class="highlight-bad">dropped</strong>.</p>
+            </div>
+          </div>
+          <div class="column is-one-quarter-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/failure_notac_smalltennis_pos_y_stuck.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4><span class="method-pill notac">No tactile</span>small tennis +y</h4>
+              <p class="video-caption-detail">The hand keeps contact but cannot escape a <strong class="highlight-warning">stuck grasp</strong>.</p>
+            </div>
+          </div>
+          <div class="column is-one-quarter-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/failure_scratch_smalltennis_neg_z_drop.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4><span class="method-pill scratch">From scratch</span>small tennis -z</h4>
+              <p class="video-caption-detail">The policy leaves the contact regime and <strong class="highlight-bad">drops the ball</strong>.</p>
+            </div>
+          </div>
+          <div class="column is-one-quarter-desktop is-half-tablet">
+            <div class="video-tile">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/failure_scratch_multiface_pos_y_ood.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4><span class="method-pill scratch">From scratch</span>multiface +y</h4>
+              <p class="video-caption-detail"><strong class="highlight-cause">Facet contacts</strong> push the hand into an <strong class="highlight-cause">out-of-distribution posture</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{anonymous2026tacbfp,
+  author  = {Anonymous Authors},
+  title   = {TacBFP: A Tactile-conditioned Behavior Foundation Prior Model for Dexterous Reorientation},
+  journal = {Manuscript in preparation},
+  year    = {2026},
+}</code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="./static/paper/tacbfp.pdf" title="Paper"><i class="fas fa-file-pdf"></i></a>
+        <span class="icon-link" title="Code (TBD)"><i class="fab fa-github"></i></span>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This website presents TacBFP, a tactile-conditioned behavior foundation prior model for dexterous reorientation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

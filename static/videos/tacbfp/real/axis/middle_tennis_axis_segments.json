@@ -1,0 +1,43 @@
+{
+  "input_video": "../middle_tennis.mp4",
+  "output_video": "middle_tennis_axis.mp4",
+  "overlay": {
+    "x": 28,
+    "y": 18,
+    "width": 302,
+    "height": 223,
+    "visual_scale": 1.6
+  },
+  "segments": [
+    {
+      "start": 0,
+      "end": 10,
+      "direction": "+z"
+    },
+    {
+      "start": 10,
+      "end": 22,
+      "direction": "-z"
+    },
+    {
+      "start": 22,
+      "end": 40,
+      "direction": "+x"
+    },
+    {
+      "start": 40,
+      "end": 51,
+      "direction": "-x"
+    },
+    {
+      "start": 51,
+      "end": 70,
+      "direction": "-y"
+    },
+    {
+      "start": 70,
+      "end": 79.634,
+      "direction": "+y"
+    }
+  ]
+}

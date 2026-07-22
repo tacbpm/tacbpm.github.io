@@ -1,0 +1,38 @@
+{
+  "input_video": "../multiface.mp4",
+  "output_video": "multiface_axis.mp4",
+  "overlay": {
+    "x": 28,
+    "y": 18,
+    "width": 302,
+    "height": 223,
+    "visual_scale": 1.6
+  },
+  "segments": [
+    {
+      "start": 0,
+      "end": 10,
+      "direction": "+z"
+    },
+    {
+      "start": 10,
+      "end": 20,
+      "direction": "+x"
+    },
+    {
+      "start": 20,
+      "end": 30,
+      "direction": "+y"
+    },
+    {
+      "start": 30,
+      "end": 40,
+      "direction": "-z"
+    },
+    {
+      "start": 40,
+      "end": 47.967,
+      "direction": "-x"
+    }
+  ]
+}

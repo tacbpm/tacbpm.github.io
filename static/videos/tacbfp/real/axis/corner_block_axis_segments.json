@@ -1,0 +1,34 @@
+{
+  "input_video": "../corner_block.mp4",
+  "output_video": "corner_block_axis.mp4",
+  "trim_start": 9,
+  "overlay": {
+    "x": 28,
+    "y": 18,
+    "width": 302,
+    "height": 223,
+    "visual_scale": 1.6
+  },
+  "segments": [
+    {
+      "start": 0,
+      "end": 9,
+      "direction": "+y"
+    },
+    {
+      "start": 9,
+      "end": 17,
+      "direction": "+z"
+    },
+    {
+      "start": 17,
+      "end": 26,
+      "direction": "-z"
+    },
+    {
+      "start": 26,
+      "end": 32,
+      "direction": "+x"
+    }
+  ]
+}

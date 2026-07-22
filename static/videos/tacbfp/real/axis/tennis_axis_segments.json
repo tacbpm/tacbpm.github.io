@@ -1,0 +1,40 @@
+{
+  "input_video": "../tennis.mp4",
+  "output_video": "tennis_axis.mp4",
+  "trim_start": 10,
+  "trim_end": 104.49,
+  "overlay": {
+    "x": 28,
+    "y": 18,
+    "width": 302,
+    "height": 223,
+    "visual_scale": 1.6
+  },
+  "segments": [
+    {
+      "start": 0,
+      "end": 10,
+      "direction": "+y"
+    },
+    {
+      "start": 10,
+      "end": 25,
+      "direction": "+z"
+    },
+    {
+      "start": 25,
+      "end": 55,
+      "direction": "-z"
+    },
+    {
+      "start": 55,
+      "end": 87,
+      "direction": "+x"
+    },
+    {
+      "start": 87,
+      "end": 94.49,
+      "direction": "-x"
+    }
+  ]
+}

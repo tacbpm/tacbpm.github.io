@@ -1,0 +1,28 @@
+{
+  "input_video": "../strawberry.mp4",
+  "output_video": "strawberry_axis.mp4",
+  "overlay": {
+    "x": 28,
+    "y": 18,
+    "width": 302,
+    "height": 223,
+    "visual_scale": 1.6
+  },
+  "segments": [
+    {
+      "start": 0,
+      "end": 8,
+      "direction": "+x"
+    },
+    {
+      "start": 8,
+      "end": 20,
+      "direction": "+z"
+    },
+    {
+      "start": 20,
+      "end": 26,
+      "direction": "-z"
+    }
+  ]
+}
