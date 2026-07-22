@@ -1,3 +1,10 @@
+:root {
+  --tacbfp-accent: #006496;
+  --tacbfp-text-strong: #1f3b4d;
+  --tacbfp-positive: #047857;
+  --tacbfp-negative: #d97706;
+}
+
 body {
   font-family: 'Noto Sans', sans-serif;
   padding-top: 3.8rem;
@@ -570,7 +577,7 @@ html {
 
 
 .title.is-3{
-  color: #048c3d;
+  color: var(--tacbfp-text-strong);
 }
 
 .title-with-logo .title.is-3 {
@@ -687,7 +694,7 @@ html {
 .nidar-slogan-section {
   padding-top: 2.5rem;
   padding-bottom: 1.5rem;
-  background: linear-gradient(135deg, #f0f8ff 0%, #fafffe 60%, #fff8f0 100%);
+  background: linear-gradient(135deg, #e4f2ff 0%, #f1fbf8 60%, #fff0df 100%);
 }
 
 .nidar-slogan {
@@ -706,8 +713,8 @@ html {
 }
 
 /* Each word gets an explicit color; use !important to beat Bulma/title overrides */
-.nidar-slogan .s1 { color: #006496 !important; }
-.nidar-slogan .s2 { color: #3b82f6 !important; }
+.nidar-slogan .s1 { color: #f59e0b !important; }
+.nidar-slogan .s2 { color: #006496 !important; }
 .nidar-slogan .s3 { color: #8b5cf6 !important; }
 .nidar-slogan .s4 {
   background: linear-gradient(90deg, #f59e0b 0%, #10b981 100%);
@@ -827,62 +834,62 @@ html {
 }
 
 .axis-x {
-  color: rgb(220, 38, 38);
+  color: var(--tacbfp-accent);
   font-weight: 800;
 }
 
 .axis-y {
-  color: rgb(22, 163, 74);
+  color: var(--tacbfp-accent);
   font-weight: 800;
 }
 
 .axis-z {
-  color: rgb(37, 99, 235);
+  color: var(--tacbfp-accent);
   font-weight: 800;
 }
 
 .highlight-metric {
-  color: #7c3aed;
+  color: var(--tacbfp-positive);
   font-weight: 800;
 }
 
 .highlight-success {
-  color: #047857;
+  color: var(--tacbfp-positive);
   font-weight: 800;
 }
 
 .highlight-warning {
-  color: #b45309;
+  color: var(--tacbfp-negative);
   font-weight: 800;
 }
 
 .highlight-cause {
-  color: #7c3aed;
+  color: var(--tacbfp-negative);
   font-weight: 800;
 }
 
 .highlight-bad {
-  color: #dc2626;
+  color: var(--tacbfp-negative);
   font-weight: 800;
 }
 
 .highlight-method {
-  color: #2563eb;
+  color: var(--tacbfp-positive);
   font-weight: 800;
 }
 
 .highlight-good {
-  color: #047857;
+  color: var(--tacbfp-positive);
   font-weight: 800;
 }
 
 .baseline-highlight {
-  color: #dc2626;
+  color: var(--tacbfp-negative);
   font-weight: 800;
 }
 
 .ours-highlight {
-  color: #047857;
+  color: var(--tacbfp-positive);
   font-weight: 800;
 }
 
@@ -1213,11 +1220,11 @@ html {
 }
 
 .failure-card-baseline {
-  border: 1px solid rgba(220, 38, 38, 0.24);
+  border: 1px solid rgba(217, 119, 6, 0.28);
 }
 
 .failure-card-ours {
-  border: 1px solid rgba(37, 99, 235, 0.28);
+  border: 1px solid rgba(4, 120, 87, 0.28);
 }
 
 .failure-card video {
@@ -1281,12 +1288,12 @@ html {
 
 .failure-badge.baseline,
 .failure-inline-badge.baseline {
-  background: #dc2626;
+  background: var(--tacbfp-negative);
 }
 
 .failure-badge.ours,
 .failure-inline-badge.ours {
-  background: #2563eb;
+  background: var(--tacbfp-positive);
 }
 
 .video-placeholder {
