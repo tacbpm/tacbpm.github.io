@@ -136,31 +136,18 @@ TIMELINE: list[ClipSpec | GridSpec] = [
     ),
     GridSpec(
         clips=(
-            ClipSpec("real/comparison/processed/clips/multiface_neg_x_ours.mp4", "TacBFP -x", 5.0, speed=1.2, start_frac=0.0),
-            ClipSpec("real/comparison/processed/clips/multiface_neg_x_notac.mp4", "No tactile -x", 5.0, speed=1.2, start_frac=0.0),
-            ClipSpec("real/comparison/processed/clips/multiface_neg_x_scratch.mp4", "From scratch -x", 5.0, speed=1.2, start_frac=0.0),
-            ClipSpec("real/comparison/processed/clips/smalltennis_z_ours.mp4", "TacBFP tennis", 5.0, speed=1.2, start_frac=0.0),
-            ClipSpec("real/comparison/processed/clips/smalltennis_z_notac.mp4", "No tactile tennis", 5.0, speed=1.2, start_frac=0.0),
-            ClipSpec("real/comparison/processed/clips/smalltennis_z_scratch.mp4", "From scratch tennis", 5.0, speed=1.2, start_frac=0.0),
+            ClipSpec("real/comparison/processed/clips/multiface_neg_x_ours.mp4", "TacBFP -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/processed/clips/multiface_neg_x_notac.mp4", "No tactile -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/processed/clips/multiface_neg_x_scratch.mp4", "From scratch -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/processed/clips/smalltennis_z_ours.mp4", "TacBFP tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/processed/clips/smalltennis_z_notac.mp4", "No tactile tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/processed/clips/smalltennis_z_scratch.mp4", "From scratch tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
         ),
         caption="Single-axis comparison on challenging real contact regimes",
         subcaption="Small objects and faceted contacts expose slow, stuck, and drop failure modes",
         seconds=5.0,
         rows=2,
         cols=3,
-    ),
-    GridSpec(
-        clips=(
-            ClipSpec("real/comparison/processed/clips/failure_notac_cornerblock_pos_y_drop.mp4", "No tactile: drop", 5.0, speed=1.2, start_frac=0.0),
-            ClipSpec("real/comparison/processed/clips/failure_notac_smalltennis_pos_y_stuck.mp4", "No tactile: stuck", 5.0, speed=1.2, start_frac=0.0),
-            ClipSpec("real/comparison/processed/clips/failure_scratch_smalltennis_neg_z_drop.mp4", "Scratch: OOD/drop", 5.0, speed=1.2, start_frac=0.0),
-            ClipSpec("real/comparison/processed/clips/failure_scratch_multiface_pos_y_ood.mp4", "Scratch: OOD posture", 5.0, speed=1.2, start_frac=0.0),
-        ),
-        caption="Representative real-robot failure cases",
-        subcaption="Contact drift, trapped grasps, and OOD hand states explain baseline instability",
-        seconds=5.0,
-        rows=2,
-        cols=2,
     ),
 ]
 
