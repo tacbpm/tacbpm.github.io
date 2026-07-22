@@ -1,8 +1,8 @@
 :root {
-  --tacbfp-accent: #006496;
-  --tacbfp-text-strong: #1f3b4d;
-  --tacbfp-positive: #047857;
-  --tacbfp-negative: #d97706;
+  --tacbpm-accent: #006496;
+  --tacbpm-text-strong: #1f3b4d;
+  --tacbpm-positive: #047857;
+  --tacbpm-negative: #d97706;
 }
 
 body {
@@ -160,7 +160,7 @@ html {
   );
 }
 
-.sharp-animated-word .title-bfp {
+.sharp-animated-word .title-bpm {
   background-image: linear-gradient(
     135deg,
     #005f8f 0%,
@@ -577,7 +577,7 @@ html {
 
 
 .title.is-3{
-  color: var(--tacbfp-text-strong);
+  color: var(--tacbpm-text-strong);
 }
 
 .title-with-logo .title.is-3 {
@@ -834,62 +834,62 @@ html {
 }
 
 .axis-x {
-  color: var(--tacbfp-accent);
+  color: var(--tacbpm-accent);
   font-weight: 800;
 }
 
 .axis-y {
-  color: var(--tacbfp-accent);
+  color: var(--tacbpm-accent);
   font-weight: 800;
 }
 
 .axis-z {
-  color: var(--tacbfp-accent);
+  color: var(--tacbpm-accent);
   font-weight: 800;
 }
 
 .highlight-metric {
-  color: var(--tacbfp-positive);
+  color: var(--tacbpm-positive);
   font-weight: 800;
 }
 
 .highlight-success {
-  color: var(--tacbfp-positive);
+  color: var(--tacbpm-positive);
   font-weight: 800;
 }
 
 .highlight-warning {
-  color: var(--tacbfp-negative);
+  color: var(--tacbpm-negative);
   font-weight: 800;
 }
 
 .highlight-cause {
-  color: var(--tacbfp-negative);
+  color: var(--tacbpm-negative);
   font-weight: 800;
 }
 
 .highlight-bad {
-  color: var(--tacbfp-negative);
+  color: var(--tacbpm-negative);
   font-weight: 800;
 }
 
 .highlight-method {
-  color: var(--tacbfp-positive);
+  color: var(--tacbpm-positive);
   font-weight: 800;
 }
 
 .highlight-good {
-  color: var(--tacbfp-positive);
+  color: var(--tacbpm-positive);
   font-weight: 800;
 }
 
 .baseline-highlight {
-  color: var(--tacbfp-negative);
+  color: var(--tacbpm-negative);
   font-weight: 800;
 }
 
 .ours-highlight {
-  color: var(--tacbfp-positive);
+  color: var(--tacbpm-positive);
   font-weight: 800;
 }
 
@@ -1288,12 +1288,12 @@ html {
 
 .failure-badge.baseline,
 .failure-inline-badge.baseline {
-  background: var(--tacbfp-negative);
+  background: var(--tacbpm-negative);
 }
 
 .failure-badge.ours,
 .failure-inline-badge.ours {
-  background: var(--tacbfp-positive);
+  background: var(--tacbpm-positive);
 }
 
 .video-placeholder {

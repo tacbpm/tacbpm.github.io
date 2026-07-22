@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a sub-60-second academic overview video for the TacBFP project page.
+"""Build a sub-60-second academic overview video for the TacBPM project page.
 
 The script expects the videos referenced by index.html to exist under:
   static/videos/tacbfp/
@@ -13,7 +13,7 @@ Optional:
   python static/videos/make_overview_video.py --update-index
 
 The output is:
-  static/videos/tacbfp/overview_tacbfp.mp4
+  static/videos/tacbfp/overview_tacbpm.mp4
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 VIDEO_ROOT = ROOT / "static" / "videos" / "tacbfp"
-OUTPUT = VIDEO_ROOT / "overview_tacbfp.mp4"
+OUTPUT = VIDEO_ROOT / "overview_tacbpm.mp4"
 FONT = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf")
 WIDTH = 1920
 HEIGHT = 1080
@@ -114,32 +114,32 @@ TIMELINE: list[ClipSpec | GridSpec] = [
             ClipSpec("real/axis/strawberry_axis.mp4", "strawberry", 7.0, speed=3.4, start_frac=0.08, x_focus=0.15),
         ),
         caption="Continuous axis-command control on the real robot",
-        subcaption="TacBFP maintains reusable tactile behavior across objects with different size and compliance",
+        subcaption="TacBPM maintains reusable tactile behavior across objects with different size and compliance",
         seconds=7.0,
         rows=2,
         cols=3,
     ),
     GridSpec(
         clips=(
-            ClipSpec("real/comparison/processed/clips/multiface_pos_x_ours.mp4", "TacBFP +x", 6.0, speed=1.4, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/processed/clips/multiface_pos_x_ours.mp4", "TacBPM +x", 6.0, speed=1.4, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/multiface_pos_x_notac.mp4", "No tactile +x", 6.0, speed=1.4, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/multiface_pos_x_scratch.mp4", "From scratch +x", 6.0, speed=1.4, start_frac=0.0, x_focus=0.0),
-            ClipSpec("real/comparison/processed/clips/multiface_pos_y_ours.mp4", "TacBFP +y", 6.0, speed=1.4, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/processed/clips/multiface_pos_y_ours.mp4", "TacBPM +y", 6.0, speed=1.4, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/multiface_pos_y_notac.mp4", "No tactile +y", 6.0, speed=1.4, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/multiface_pos_y_scratch.mp4", "From scratch +y", 6.0, speed=1.4, start_frac=0.0, x_focus=0.0),
         ),
         caption="Single-axis real-robot comparisons on the multiface object",
-        subcaption="TacBFP preserves rolling contact while baselines drop, stall, or enter OOD postures",
+        subcaption="TacBPM preserves rolling contact while baselines drop, stall, or enter OOD postures",
         seconds=6.0,
         rows=2,
         cols=3,
     ),
     GridSpec(
         clips=(
-            ClipSpec("real/comparison/processed/clips/multiface_neg_x_ours.mp4", "TacBFP -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/processed/clips/multiface_neg_x_ours.mp4", "TacBPM -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/multiface_neg_x_notac.mp4", "No tactile -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/multiface_neg_x_scratch.mp4", "From scratch -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
-            ClipSpec("real/comparison/processed/clips/smalltennis_z_ours.mp4", "TacBFP tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/processed/clips/smalltennis_z_ours.mp4", "TacBPM tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/smalltennis_z_notac.mp4", "No tactile tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/smalltennis_z_scratch.mp4", "From scratch tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
         ),
@@ -249,13 +249,13 @@ def tile_chain(tile_w: int, tile_h: int, label: str | None = None, x_focus: floa
 
 
 def make_title_segment(path: Path, duration: float) -> None:
-    subtitle = "Tactile-conditioned Behavior Foundation Prior for Dexterous Reorientation"
+    subtitle = "Tactile-conditioned Behavior Prior Model for Dexterous Reorientation"
     filter_complex = (
         f"color=c=#f8fbff:s={WIDTH}x{HEIGHT}:r={FPS}:d={duration},format=yuv420p,"
         "drawbox=x=0:y=0:w=iw:h=ih:color=white@0.0:t=fill,"
         + drawtext_filter("Tac", "(h/2)-95", 96, "#FF7A1A")
         + ","
-        + drawtext_filter("BFP", "(h/2)-95", 96, "#3A8DDE").replace("x=70", "x=255")
+        + drawtext_filter("BPM", "(h/2)-95", 96, "#3A8DDE").replace("x=70", "x=255")
         + ","
         + drawtext_filter(subtitle, "(h/2)+25", 42, "#18324a")
         + ","
@@ -445,13 +445,13 @@ def make_grid_segment(spec: GridSpec, index: int, tmp: Path) -> Path:
 
 
 def make_outro_segment(path: Path, duration: float) -> None:
-    text1 = "TacBFP"
+    text1 = "TacBPM"
     text2 = "A tactile-conditioned prior for reusable dexterous manipulation"
     vf = (
         f"format=yuv420p,"
         + drawtext_filter("Tac", "(h/2)-70", 92, "#FF7A1A")
         + ","
-        + drawtext_filter("BFP", "(h/2)-70", 92, "#3A8DDE").replace("x=70", "x=255")
+        + drawtext_filter("BPM", "(h/2)-70", 92, "#3A8DDE").replace("x=70", "x=255")
         + ","
         + drawtext_filter(text2, "(h/2)+45", 40, "#18324a")
         + ","
@@ -577,7 +577,7 @@ def main() -> int:
         return 2
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix="tacbfp_overview_") as tmp_name:
+    with tempfile.TemporaryDirectory(prefix="tacbpm_overview_") as tmp_name:
         tmp = Path(tmp_name)
         segments: list[Path] = []
         intro = tmp / "segment_00_intro.mp4"

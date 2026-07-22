@@ -4,11 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-    content="TacBFP learns a tactile-conditioned behavior foundation prior for dexterous reorientation and downstream residual latent control.">
+    content="TacBPM learns a tactile-conditioned behavior prior model for dexterous reorientation and downstream residual latent control.">
   <meta name="keywords"
     content="Dexterous manipulation, tactile sensing, behavior priors, policy distillation, reorientation, residual latent control">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TacBFP: A Tactile-conditioned Behavior Foundation Prior Model for Dexterous Reorientation</title>
+  <title>TacBPM: A Tactile-conditioned Behavior Prior Model for Dexterous Reorientation</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
@@ -26,14 +26,14 @@
   <script src="./static/js/script.js"></script>
 
   <style>
-    .tacbfp-card-grid {
+    .tacbpm-card-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 0.9rem;
       margin-top: 1rem;
     }
 
-    .tacbfp-card {
+    .tacbpm-card {
       height: 100%;
       padding: 1rem;
       border: 1px solid rgba(0, 100, 150, 0.12);
@@ -42,7 +42,7 @@
       box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
     }
 
-    .tacbfp-card-label {
+    .tacbpm-card-label {
       display: inline-block;
       margin-bottom: 0.35rem;
       color: #006496;
@@ -52,7 +52,7 @@
       text-transform: uppercase;
     }
 
-    .tacbfp-card strong {
+    .tacbpm-card strong {
       display: block;
       margin-bottom: 0.35rem;
       color: #172554;
@@ -186,7 +186,7 @@
     }
 
     @media (max-width: 900px) {
-      .tacbfp-card-grid {
+      .tacbpm-card-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -214,7 +214,7 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">
-              <span class="sharp-animated-word"><span class="title-tac">Tac</span><span class="title-bfp">BFP</span></span>: A Tactile-conditioned Behavior Foundation Prior Model for Dexterous Reorientation
+              <span class="sharp-animated-word"><span class="title-tac">Tac</span><span class="title-bpm">BPM</span></span>: A Tactile-conditioned Behavior Prior Model for Dexterous Reorientation
             </h1>
             <h3 class="title is-4 conference-authors">Anonymous Submission</h3>
             <div class="is-size-5 publication-authors">
@@ -228,7 +228,7 @@
             </p>
             <div class="column has-text-centered">
               <span class="link-block">
-                <a href="./static/paper/tacbfp.pdf" class="external-link button is-normal is-rounded is-dark">
+                <a href="./static/paper/tacbpm.pdf" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper</span>
                 </a>
@@ -252,7 +252,7 @@
         <span class="s1">Tactile</span>&nbsp;<span class="s2">Behavior Priors</span>&nbsp;<span class="s3">for</span>&nbsp;<span class="s4">Dexterous</span>&nbsp;<span class="s5">Reorientation</span><span class="s-dot"></span>
       </p>
       <p class="nidar-slogan-sub">
-        TacBFP distills multi-scale sphere specialists into a reusable tactile-proprioceptive latent controller, then freezes the tactile prior so downstream policies learn compact residual latent actions instead of raw joint commands; the decoder is either frozen for strict reuse or finetuned for new geometry.
+        TacBPM distills multi-scale sphere specialists into a reusable tactile-proprioceptive latent controller, then freezes the tactile prior so downstream policies learn compact residual latent actions instead of raw joint commands; the decoder is either frozen for strict reuse or finetuned for new geometry.
       </p>
     </div>
   </section>
@@ -263,13 +263,13 @@
         <div class="column is-four-fifths">
           <div class="publication-video">
             <video autoplay muted playsinline controls preload="none" data-loop-delay-ms="1000">
-              <source data-src="./static/videos/tacbfp/overview_tacbfp.mp4" type="video/mp4">
+              <source data-src="./static/videos/tacbfp/overview_tacbpm.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
           <p class="has-text-centered result-note overview-caption" style="margin-top: 0.75rem;">
             Overview timeline:
-            <a href="#" class="caption-time video-seek-link">0-2.5 s</a> TacBFP motivation,
+            <a href="#" class="caption-time video-seek-link">0-2.5 s</a> TacBPM motivation,
             <a href="#" class="caption-time video-seek-link">2.5-6.5 s</a> multi-scale tactile prior,
             <a href="#" class="caption-time video-seek-link">6.5-13.5 s</a> residual latent downstream reuse,
             <a href="#" class="caption-time video-seek-link">13.5-17.5 s</a> multi-object rotation,
@@ -291,7 +291,7 @@
           <h2 class="title is-3" style="color: #006496;font-weight: bolder;">TL;DR</h2>
           <div class="content has-text-justified">
             <p>
-              <strong>TacBFP</strong> learns a contact-aware behavior foundation prior for dexterous reorientation. Here, the prior is the foundation for downstream controllers in this task family, not a general-purpose manipulation foundation model. Instead of training every new policy from low-level 22-DoF hand actions, TacBFP first trains sphere reorientation specialists across scale factors 0.3 to 1.0, distills them into a single variational latent controller, and reuses the frozen tactile-conditioned prior for downstream reorientation on harder objects.
+              <strong>TacBPM</strong> learns a contact-aware behavior prior model for dexterous reorientation. Instead of training every new policy from low-level 22-DoF hand actions, TacBPM first trains sphere reorientation specialists across scale factors 0.3 to 1.0, distills them into a single variational latent controller, and reuses the frozen tactile-conditioned prior for downstream reorientation on harder objects.
             </p>
             <p>
               The downstream policy predicts only a residual latent code around the prior mean. This keeps exploration close to stable contact behaviors while still allowing task-specific adaptation to anisotropic objects, multi-object settings, and commanded rotation axes.
@@ -300,19 +300,19 @@
         </div>
       </div>
 
-      <div class="tacbfp-card-grid">
-        <div class="tacbfp-card">
-          <span class="tacbfp-card-label">Stage 1</span>
+      <div class="tacbpm-card-grid">
+        <div class="tacbpm-card">
+          <span class="tacbpm-card-label">Stage 1</span>
           <strong>Specialist behavior coverage</strong>
           <p>Eight sphere-scale teachers expose the hand to different apertures, tactile force patterns, and rolling or regrasping regimes.</p>
         </div>
-        <div class="tacbfp-card">
-          <span class="tacbfp-card-label">Stage 2</span>
+        <div class="tacbpm-card">
+          <span class="tacbpm-card-label">Stage 2</span>
           <strong>Tactile latent controller</strong>
           <p>A variational encoder, learned prior, and decoder are conditioned on joint history, previous targets, contact magnitudes, 3D contact locations, and scale cues.</p>
         </div>
-        <div class="tacbfp-card">
-          <span class="tacbfp-card-label">Stage 3</span>
+        <div class="tacbpm-card">
+          <span class="tacbpm-card-label">Stage 3</span>
           <strong>Residual latent transfer</strong>
           <p>Downstream policies keep the tactile prior fixed and learn compact residual latent actions; the decoder is frozen for strict reuse or finetuned for geometry adaptation.</p>
         </div>
@@ -322,7 +322,7 @@
       <h2 class="title is-3 has-text-centered" style="color: #006496;font-weight: bolder;">Method Overview</h2>
       <div class="content has-text-justified">
         <p>
-          TacBFP treats tactile sensing as part of the motor substrate rather than as an auxiliary observation. The prior predicts a latent action distribution from the current tactile-proprioceptive interaction state; the decoder maps the selected latent code back to hand commands. During downstream learning, the policy outputs <span class="highlight-method">a residual latent action</span> added to the prior mean, so it can adapt intent without abandoning the distilled contact behavior.
+          TacBPM treats tactile sensing as part of the motor substrate rather than as an auxiliary observation. The prior predicts a latent action distribution from the current tactile-proprioceptive interaction state; the decoder maps the selected latent code back to hand commands. During downstream learning, the policy outputs <span class="highlight-method">a residual latent action</span> added to the prior mean, so it can adapt intent without abandoning the distilled contact behavior.
         </p>
       </div>
       <div class="ablation-summary-grid">
@@ -403,14 +403,14 @@
       <h2 class="title is-3 has-text-centered" style="color: #006496;font-weight: bolder;">Qualitative Demonstrations</h2>
       <div class="content has-text-justified">
         <p>
-          The gallery follows the same progression as TacBFP itself: first learning a reusable tactile behavior prior, then reusing it for downstream object transfer, and finally conditioning the reused prior on commanded rotation axes in simulation and on the real robot.
+          The gallery follows the same progression as TacBPM itself: first learning a reusable tactile behavior prior, then reusing it for downstream object transfer, and finally conditioning the reused prior on commanded rotation axes in simulation and on the real robot.
         </p>
       </div>
 
       <div class="gallery-stage" id="prior-gallery">
         <h3 class="title is-4 gallery-stage-title">Generalist Prior Coverage</h3>
         <p class="gallery-stage-note">
-          TacBFP starts from multi-scale sphere teachers, where different object sizes induce different apertures, tactile forces, and rolling contacts.
+          TacBPM starts from multi-scale sphere teachers, where different object sizes induce different apertures, tactile forces, and rolling contacts.
         </p>
         <div class="experiment-subsection">
           <h4 class="title is-5 subsection-title">Generalist prior over sphere sizes</h4>
@@ -422,7 +422,7 @@
                 Your browser does not support the video tag.
               </video>
               <h4>Multi-scale sphere reorientation</h4>
-              <p class="video-caption-detail">The distilled TacBFP generalist handles multiple sphere scales, illustrating reusable contact behavior before downstream finetuning.</p>
+              <p class="video-caption-detail">The distilled TacBPM generalist handles multiple sphere scales, illustrating reusable contact behavior before downstream finetuning.</p>
             </div>
           </div>
         </div>
@@ -438,7 +438,7 @@
           <h4 class="title is-5 subsection-title">AnyPose-to-AnyPose downstream transfer</h4>
         <div class="content has-text-justified">
           <p>
-            These rollouts use the TacBFP prior-centered residual latent interface while a downstream policy adapts to different object geometries. The prior remains fixed; the decoder setting follows the reported paper variant.
+            These rollouts use the TacBPM prior-centered residual latent interface while a downstream policy adapts to different object geometries. The prior remains fixed; the decoder setting follows the reported paper variant.
           </p>
         </div>
         <div class="columns is-centered is-multiline is-variable is-3 video-grid">
@@ -499,7 +499,7 @@
                 Your browser does not support the video tag.
               </video>
               <h4>trash_can_02</h4>
-              <p class="video-caption-detail">This downstream rollout tests TacBFP on a broader, container-like object whose contact geometry differs from the sphere teachers.</p>
+              <p class="video-caption-detail">This downstream rollout tests TacBPM on a broader, container-like object whose contact geometry differs from the sphere teachers.</p>
             </div>
           </div>
         </div>
@@ -515,7 +515,7 @@
                 Your browser does not support the video tag.
               </video>
               <h4>Multi-object downstream rotation</h4>
-              <p class="video-caption-detail">A downstream policy rotates five different objects in the same setting, testing whether TacBFP's contact prior can support joint object coverage.</p>
+              <p class="video-caption-detail">A downstream policy rotates five different objects in the same setting, testing whether TacBPM's contact prior can support joint object coverage.</p>
             </div>
           </div>
         </div>
@@ -650,7 +650,7 @@
         <h4 class="title is-5 subsection-title">Real robot axis-conditioned rotation</h4>
         <div class="content has-text-justified">
           <p>
-            These real-robot rollouts evaluate whether the downstream policy can condition on a commanded rotation axis while TacBFP supplies stable tactile contact behavior through the hand prior.
+            These real-robot rollouts evaluate whether the downstream policy can condition on a commanded rotation axis while TacBPM supplies stable tactile contact behavior through the hand prior.
           </p>
         </div>
         <div class="columns is-multiline is-variable is-3 video-grid">
@@ -765,7 +765,7 @@
         </p>
         <div class="content has-text-justified">
           <p>
-            The following videos compare <span class="method-pill ours">TacBFP</span>, <span class="method-pill notac">No tactile</span>, and <span class="method-pill scratch">From scratch</span> on isolated real-robot axis commands. The comparison highlights that <strong class="highlight-method">tactile-conditioned residual latent control</strong> maintains usable rolling contact, while the baselines are more likely to show <strong class="highlight-warning">slow progress</strong>, <strong class="highlight-bad">drops</strong>, or <strong class="highlight-cause">out-of-distribution postures</strong>.
+            The following videos compare <span class="method-pill ours">TacBPM</span>, <span class="method-pill notac">No tactile</span>, and <span class="method-pill scratch">From scratch</span> on isolated real-robot axis commands. The comparison highlights that <strong class="highlight-method">tactile-conditioned residual latent control</strong> maintains usable rolling contact, while the baselines are more likely to show <strong class="highlight-warning">slow progress</strong>, <strong class="highlight-bad">drops</strong>, or <strong class="highlight-cause">out-of-distribution postures</strong>.
           </p>
         </div>
 
@@ -780,7 +780,7 @@
                   <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_pos_x_ours.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
-                <h4><span class="method-pill ours">TacBFP</span>Stable rolling</h4>
+                <h4><span class="method-pill ours">TacBPM</span>Stable rolling</h4>
                 <p class="video-caption-detail"><strong class="highlight-method">Tactile feedback</strong> keeps the multiface object in <strong class="highlight-good">controllable rolling contact</strong>.</p>
               </div>
             </div>
@@ -818,7 +818,7 @@
                   <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_pos_y_ours.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
-                <h4><span class="method-pill ours">TacBFP</span>Stable rolling</h4>
+                <h4><span class="method-pill ours">TacBPM</span>Stable rolling</h4>
                 <p class="video-caption-detail">The tactile prior recovers <strong class="highlight-good">usable rolling contact</strong> on a faceted object.</p>
               </div>
             </div>
@@ -856,8 +856,8 @@
                   <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/multiface_neg_x_ours.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
-                <h4><span class="method-pill ours">TacBFP</span>Command following</h4>
-                <p class="video-caption-detail">TacBFP completes the recorded segment while maintaining <strong class="highlight-good">stable contact</strong>.</p>
+                <h4><span class="method-pill ours">TacBPM</span>Command following</h4>
+                <p class="video-caption-detail">TacBPM completes the recorded segment while maintaining <strong class="highlight-good">stable contact</strong>.</p>
               </div>
             </div>
             <div class="column is-one-third-desktop is-full-tablet">
@@ -894,8 +894,8 @@
                   <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/smalltennis_z_ours.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
-                <h4><span class="method-pill ours">TacBFP</span>Stable z-axis</h4>
-                <p class="video-caption-detail">TacBFP keeps <strong class="highlight-good">contact and rotation stable</strong> on the small ball.</p>
+                <h4><span class="method-pill ours">TacBPM</span>Stable z-axis</h4>
+                <p class="video-caption-detail">TacBPM keeps <strong class="highlight-good">contact and rotation stable</strong> on the small ball.</p>
               </div>
             </div>
             <div class="column is-one-third-desktop is-full-tablet">
@@ -930,7 +930,7 @@
         </p>
         <div class="comparison-takeaway content">
           <p>
-            <strong class="highlight-bad">Failure summary.</strong> Across the recorded <span class="method-pill notac">No tactile</span> and <span class="method-pill scratch">From scratch</span> trials, failures mostly appear as <strong class="highlight-bad">drops after contact drift</strong>, <strong class="highlight-warning">stuck configurations</strong>, <strong class="highlight-warning">slow or side-biased rotations</strong>, and <strong class="highlight-cause">out-of-distribution hand postures</strong>. In contrast, <span class="method-pill ours">TacBFP</span> uses tactile feedback to stabilize the reusable prior and keep exploration near contact-preserving behaviors.
+            <strong class="highlight-bad">Failure summary.</strong> Across the recorded <span class="method-pill notac">No tactile</span> and <span class="method-pill scratch">From scratch</span> trials, failures mostly appear as <strong class="highlight-bad">drops after contact drift</strong>, <strong class="highlight-warning">stuck configurations</strong>, <strong class="highlight-warning">slow or side-biased rotations</strong>, and <strong class="highlight-cause">out-of-distribution hand postures</strong>. In contrast, <span class="method-pill ours">TacBPM</span> uses tactile feedback to stabilize the reusable prior and keep exploration near contact-preserving behaviors.
           </p>
         </div>
         <div class="columns is-multiline is-variable is-3 video-grid">
@@ -982,9 +982,9 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@article{anonymous2026tacbfp,
+      <pre><code>@article{anonymous2026tacbpm,
   author  = {Anonymous Authors},
-  title   = {TacBFP: A Tactile-conditioned Behavior Foundation Prior Model for Dexterous Reorientation},
+  title   = {TacBPM: A Tactile-conditioned Behavior Prior Model for Dexterous Reorientation},
   journal = {Manuscript in preparation},
   year    = {2026},
 }</code></pre>
@@ -994,7 +994,7 @@
   <footer class="footer">
     <div class="container">
       <div class="content has-text-centered">
-        <a class="icon-link" href="./static/paper/tacbfp.pdf" title="Paper"><i class="fas fa-file-pdf"></i></a>
+        <a class="icon-link" href="./static/paper/tacbpm.pdf" title="Paper"><i class="fas fa-file-pdf"></i></a>
         <span class="icon-link" title="Code release pending"><i class="fab fa-github"></i></span>
       </div>
       <div class="columns is-centered">
@@ -1006,7 +1006,7 @@
                 Commons Attribution-ShareAlike 4.0 International License</a>.
             </p>
             <p>
-              This website presents TacBFP, a tactile-conditioned behavior foundation prior model for dexterous reorientation.
+              This website presents TacBPM, a tactile-conditioned behavior prior model for dexterous reorientation.
             </p>
           </div>
         </div>
