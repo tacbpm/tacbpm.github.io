@@ -224,7 +224,7 @@
               <span class="author-block">Anonymous Institution(s)</span>
             </div>
             <p class="is-size-5 has-text-weight-bold" style="color: red;">
-              We will release codes upon paper acceptance!
+              Code will be released upon paper acceptance !
             </p>
             <div class="column has-text-centered">
               <span class="link-block">
@@ -236,7 +236,7 @@
               <span class="link-block">
                 <button class="external-link button is-normal is-rounded is-dark" disabled>
                   <span class="icon"><i class="fab fa-github"></i></span>
-                  <span>Code (TBD)</span>
+                  <span>Code Release Pending</span>
                 </button>
               </span>
             </div>
@@ -252,7 +252,7 @@
         <span class="s1">Tactile</span>&nbsp;<span class="s2">Behavior Priors</span>&nbsp;<span class="s3">for</span>&nbsp;<span class="s4">Dexterous</span>&nbsp;<span class="s5">Reorientation</span><span class="s-dot"></span>
       </p>
       <p class="nidar-slogan-sub">
-        TacBFP distills multi-scale sphere specialists into a reusable tactile-proprioceptive latent controller, then freezes the prior and decoder so downstream policies learn compact residual latent actions instead of raw joint commands.
+        TacBFP distills multi-scale sphere specialists into a reusable tactile-proprioceptive latent controller, then freezes the tactile prior so downstream policies learn compact residual latent actions instead of raw joint commands; the decoder is either frozen for strict reuse or finetuned for new geometry.
       </p>
     </div>
   </section>
@@ -291,7 +291,7 @@
           <h2 class="title is-3" style="color: #006496;font-weight: bolder;">TL;DR</h2>
           <div class="content has-text-justified">
             <p>
-              <strong>TacBFP</strong> learns a contact-aware behavior foundation prior for dexterous hands. Instead of training every new manipulation policy from low-level 22-DoF hand actions, TacBFP first trains sphere reorientation specialists across scale factors 0.3 to 1.0, distills them into a single variational latent controller, and reuses the frozen tactile-conditioned prior and decoder for downstream reorientation on harder objects.
+              <strong>TacBFP</strong> learns a contact-aware behavior foundation prior for dexterous reorientation. Here, the prior is the foundation for downstream controllers in this task family, not a general-purpose manipulation foundation model. Instead of training every new policy from low-level 22-DoF hand actions, TacBFP first trains sphere reorientation specialists across scale factors 0.3 to 1.0, distills them into a single variational latent controller, and reuses the frozen tactile-conditioned prior for downstream reorientation on harder objects.
             </p>
             <p>
               The downstream policy predicts only a residual latent code around the prior mean. This keeps exploration close to stable contact behaviors while still allowing task-specific adaptation to anisotropic objects, multi-object settings, and commanded rotation axes.
@@ -314,7 +314,7 @@
         <div class="tacbfp-card">
           <span class="tacbfp-card-label">Stage 3</span>
           <strong>Residual latent transfer</strong>
-          <p>Downstream policies freeze the prior and decoder, then learn compact residual latent actions for complex objects and rotation objectives.</p>
+          <p>Downstream policies keep the tactile prior fixed and learn compact residual latent actions; the decoder is frozen for strict reuse or finetuned for geometry adaptation.</p>
         </div>
       </div>
 
@@ -343,8 +343,8 @@
         </div>
         <div class="ablation-summary-card">
           <span class="ablation-card-label">Reuse</span>
-          <strong>Frozen prior + decoder</strong>
-          <p>The same tactile motor substrate transfers to object reorientation, multi-object settings, and axis-conditioned rotation.</p>
+          <strong>Frozen prior interface</strong>
+          <p>The same tactile prior anchors downstream object reorientation, multi-object settings, and axis-conditioned rotation, with either frozen or finetuned decoder variants.</p>
         </div>
       </div>
     </div>
@@ -432,13 +432,13 @@
       <div class="gallery-stage" id="downstream-gallery">
         <h3 class="title is-4 gallery-stage-title">Downstream Reuse for New Objects</h3>
         <p class="gallery-stage-note">
-          With the prior and decoder frozen, downstream policies only learn compact residual latent actions for complex shapes and multi-object reuse.
+          With the tactile prior fixed, downstream policies only learn compact residual latent actions for complex shapes and multi-object reuse. Decoder-frozen and decoder-finetuned variants are separated in the paper.
         </p>
         <div class="experiment-subsection">
           <h4 class="title is-5 subsection-title">AnyPose-to-AnyPose downstream transfer</h4>
         <div class="content has-text-justified">
           <p>
-            These rollouts use the TacBFP prior and decoder as a frozen motor substrate while a downstream residual latent policy adapts to different object geometries.
+            These rollouts use the TacBFP prior-centered residual latent interface while a downstream policy adapts to different object geometries. The prior remains fixed; the decoder setting follows the reported paper variant.
           </p>
         </div>
         <div class="columns is-centered is-multiline is-variable is-3 video-grid">
@@ -525,7 +525,7 @@
       <div class="gallery-stage" id="axis-gallery">
         <h3 class="title is-4 gallery-stage-title">Axis-conditioned Reorientation</h3>
         <p class="gallery-stage-note">
-          Continuous commanded-axis videos are grouped by domain: simulation first, followed by real-robot rollouts. The policy responds to <strong class="highlight-method">keyboard-controlled axis commands</strong> and performs <strong class="highlight-good">smooth, seamless transitions</strong> as the requested rotation axis changes.
+          Continuous commanded-axis videos are grouped by domain: simulation first, followed by real-robot rollouts. The policy responds to <strong class="highlight-method">keyboard-controlled axis commands</strong> and performs <strong class="highlight-good">continuous transitions</strong> as the requested rotation axis changes.
         </p>
         <div class="experiment-subsection">
           <h4 class="title is-5 subsection-title">Simulated axis-conditioned rotation</h4>
@@ -995,7 +995,7 @@
     <div class="container">
       <div class="content has-text-centered">
         <a class="icon-link" href="./static/paper/tacbfp.pdf" title="Paper"><i class="fas fa-file-pdf"></i></a>
-        <span class="icon-link" title="Code (TBD)"><i class="fab fa-github"></i></span>
+        <span class="icon-link" title="Code release pending"><i class="fab fa-github"></i></span>
       </div>
       <div class="columns is-centered">
         <div class="column is-8">
