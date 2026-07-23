@@ -322,7 +322,7 @@
       <h2 class="title is-3 has-text-centered" style="color: #006496;font-weight: bolder;">Method Overview</h2>
       <div class="content has-text-justified">
         <p>
-          TacBPM treats tactile sensing as part of the motor substrate rather than as an auxiliary observation. The prior predicts a latent action distribution from the current tactile-proprioceptive interaction state; the decoder maps the selected latent code back to hand commands. During downstream learning, the policy outputs <span class="highlight-method">a residual latent action</span> added to the prior mean, so it can adapt intent without abandoning the distilled contact behavior.
+          TacBPM treats tactile sensing as part of the hand action interface rather than as an auxiliary observation. The prior predicts a latent action distribution from the current tactile-proprioceptive interaction state; the decoder maps the selected latent code back to hand commands. During downstream learning, the policy outputs <span class="highlight-method">a residual latent action</span> added to the prior mean, so it can adapt intent without abandoning the distilled contact behavior.
         </p>
       </div>
       <div class="ablation-summary-grid">
@@ -525,13 +525,13 @@
       <div class="gallery-stage" id="axis-gallery">
         <h3 class="title is-4 gallery-stage-title">Axis-conditioned Reorientation</h3>
         <p class="gallery-stage-note">
-          Continuous commanded-axis videos are grouped by domain: simulation first, followed by real-robot rollouts. The policy responds to <strong class="highlight-method">keyboard-controlled axis commands</strong> and performs <strong class="highlight-good">continuous transitions</strong> as the requested rotation axis changes.
+          Continuous commanded-axis videos are grouped by domain: simulation first, followed by real-robot rollouts. The policy responds to <strong class="highlight-method">six signed rotation commands</strong> and performs <strong class="highlight-good">continuous transitions</strong> as the requested rotation axis changes.
         </p>
         <div class="experiment-subsection">
           <h4 class="title is-5 subsection-title">Simulated axis-conditioned rotation</h4>
         <div class="content has-text-justified">
           <p>
-            These simulation rollouts follow the automatic recording schedule used by the axis-conditioned downstream evaluation script: each object receives <strong class="axis-x">+x/-x</strong>, <strong class="axis-y">+y/-y</strong>, and <strong class="axis-z">+z/-z</strong> commands. The same residual-latent controller changes direction without resetting the grasp, illustrating <strong class="highlight-good">continuous contact through axis switches</strong>.
+            These simulation rollouts follow the automatic recording schedule used by the axis-conditioned downstream evaluation: each object receives <strong class="axis-x">+x/-x</strong>, <strong class="axis-y">+y/-y</strong>, and <strong class="axis-z">+z/-z</strong> commands. The same residual-latent controller changes direction without resetting the grasp, illustrating <strong class="highlight-good">continuous contact through axis switches</strong>.
           </p>
         </div>
         <div class="columns is-multiline is-variable is-3 video-grid">
