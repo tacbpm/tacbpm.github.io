@@ -144,9 +144,9 @@ TIMELINE: list[ClipSpec | GridSpec] = [
             ClipSpec("real/comparison/processed/clips/multiface_neg_x_ours.mp4", "TacBPM -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/multiface_neg_x_notac.mp4", "No tactile -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/multiface_neg_x_scratch.mp4", "From scratch -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
-            ClipSpec("real/comparison/processed/clips/smalltennis_z_ours.mp4", "TacBPM tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
-            ClipSpec("real/comparison/notac_smalltennis_+z_side_slow_ood.mp4", "No tactile tennis OOD stop", 5.0, speed=1.2, start_frac=1.0, x_focus=0.0),
-            ClipSpec("real/comparison/processed/clips/smalltennis_z_scratch.mp4", "From scratch tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/processed/clips/smalltennis_z_ours.mp4", "TacBPM tennis +z", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/notac_smalltennis_+z_side_slow_ood.mp4", "No tactile tennis +z", 5.0, speed=1.2, start_frac=1.0, x_focus=0.0),
+            ClipSpec("real/comparison/processed/clips/smalltennis_z_scratch.mp4", "From scratch tennis +z", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
         ),
         caption="Failure modes | Challenging contacts expose baseline open-loop behavior",
         subcaption="TacBPM stays more contact-aware; baselines drift off-axis, become OOD, get stuck, or drop",
@@ -199,13 +199,13 @@ def ffmpeg_escape_text(text: str) -> str:
     )
 
 
-def drawtext_filter(text: str, y: str, fontsize: int, color: str = "white") -> str:
+def drawtext_filter(text: str, y: str, fontsize: int, color: str = "white", x: str = "70") -> str:
     font_part = f"fontfile={FONT}:" if FONT.exists() else ""
     return (
         "drawtext="
         f"{font_part}"
         f"text='{ffmpeg_escape_text(text)}':"
-        "x=70:"
+        f"x={x}:"
         f"y={y}:"
         f"fontsize={fontsize}:"
         f"fontcolor={color}:"
@@ -220,6 +220,10 @@ def label_bar_color(label: str) -> str:
         if label.startswith(prefix):
             return color
     return "black@0.36"
+
+
+def label_badge_width(label: str) -> int:
+    return min(560, max(220, len(label) * 18 + 54))
 
 
 def normalize_chain(duration: float, x_focus: float = 0.5, caption: str | None = None) -> str:
@@ -251,10 +255,11 @@ def tile_chain(tile_w: int, tile_h: int, label: str | None = None, x_focus: floa
         "format=yuv420p",
     ]
     if label:
+        badge_w = label_badge_width(label)
         filters.extend(
             [
-                f"drawbox=x=0:y=0:w=iw:h=58:color={label_bar_color(label)}:t=fill",
-                drawtext_filter(label, "16", 28),
+                f"drawbox=x=iw-{badge_w}:y=0:w={badge_w}:h=58:color={label_bar_color(label)}:t=fill",
+                drawtext_filter(label, "16", 28, x="w-text_w-28"),
             ]
         )
     return ",".join(filters)
