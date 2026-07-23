@@ -185,6 +185,23 @@
       margin-bottom: 1.1rem;
     }
 
+    #failure-case-gallery .failure-caption-compact {
+      display: grid;
+      gap: 0.28rem;
+      font-size: 0.86rem;
+      line-height: 1.35;
+    }
+
+    #failure-case-gallery .failure-caption-compact .caption-lead {
+      display: block;
+    }
+
+    #failure-case-gallery .failure-caption-compact .caption-detail {
+      display: block;
+      color: #64748b;
+      font-size: 0.8rem;
+    }
+
     @media (max-width: 900px) {
       .tacbpm-card-grid {
         grid-template-columns: 1fr;
@@ -252,7 +269,7 @@
         <span class="s1">Tactile</span>&nbsp;<span class="s2">Behavior Priors</span>&nbsp;<span class="s3">for</span>&nbsp;<span class="s4">Dexterous</span>&nbsp;<span class="s5">Reorientation</span><span class="s-dot"></span>
       </p>
       <p class="nidar-slogan-sub">
-        TacBPM distills multi-scale sphere specialists into a reusable tactile-proprioceptive latent controller, then freezes the tactile prior so downstream policies learn compact residual latent actions instead of raw joint commands; the decoder is either frozen for strict reuse or finetuned for new geometry.
+        TacBPM distills multi-scale sphere specialists into a reusable tactile-proprioceptive latent controller, then freezes the tactile prior so downstream policies learn compact residual latent actions instead of raw joint commands while finetuning the decoder for new geometry.
       </p>
     </div>
   </section>
@@ -314,7 +331,7 @@
         <div class="tacbpm-card">
           <span class="tacbpm-card-label">Stage 3</span>
           <strong>Residual latent transfer</strong>
-          <p>Downstream policies keep the tactile prior fixed and learn compact residual latent actions; the decoder is frozen for strict reuse or finetuned for geometry adaptation.</p>
+          <p>Downstream policies keep the tactile prior fixed, learn compact residual latent actions, and finetune the decoder for geometry adaptation.</p>
         </div>
       </div>
 
@@ -344,7 +361,7 @@
         <div class="ablation-summary-card">
           <span class="ablation-card-label">Reuse</span>
           <strong>Frozen prior interface</strong>
-          <p>The same tactile prior anchors downstream object reorientation, multi-object settings, and axis-conditioned rotation, with either frozen or finetuned decoder variants.</p>
+          <p>The same tactile prior anchors downstream object reorientation, multi-object settings, and axis-conditioned rotation while the decoder adapts to downstream geometry.</p>
         </div>
       </div>
     </div>
@@ -382,7 +399,7 @@
             <tr>
               <td>Downstream transfer</td>
               <td>Complex-object AnyPose-to-AnyPose</td>
-              <td><strong>73.30% multi-object success</strong> with frozen decoder</td>
+              <td><strong>70.00% multi-object success</strong> with main finetuned decoder</td>
               <td>Residual latent control remains stable when several object geometries are trained jointly.</td>
             </tr>
             <tr>
@@ -432,13 +449,13 @@
       <div class="gallery-stage" id="downstream-gallery">
         <h3 class="title is-4 gallery-stage-title">Downstream Reuse for New Objects</h3>
         <p class="gallery-stage-note">
-          With the tactile prior fixed, downstream policies only learn compact residual latent actions for complex shapes and multi-object reuse. Decoder-frozen and decoder-finetuned variants are separated in the paper.
+          With the tactile prior fixed, downstream policies only learn compact residual latent actions for complex shapes and multi-object reuse while the decoder is finetuned for geometry adaptation. The paper also reports a frozen-decoder ablation to diagnose strict prior reuse.
         </p>
         <div class="experiment-subsection">
           <h4 class="title is-5 subsection-title">AnyPose-to-AnyPose downstream transfer</h4>
         <div class="content has-text-justified">
           <p>
-            These rollouts use the TacBPM prior-centered residual latent interface while a downstream policy adapts to different object geometries. The prior remains fixed; the decoder setting follows the reported paper variant.
+            These rollouts use the TacBPM prior-centered residual latent interface while a downstream policy adapts to different object geometries. The prior remains fixed and the decoder is finetuned for the downstream geometry.
           </p>
         </div>
         <div class="columns is-centered is-multiline is-variable is-3 video-grid">
@@ -901,11 +918,11 @@
             <div class="column is-one-third-desktop is-full-tablet">
               <div class="video-tile method-card-notac">
                 <video autoplay muted loop playsinline controls preload="none">
-                  <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/smalltennis_z_notac.mp4" type="video/mp4">
+                  <source data-src="./static/videos/tacbfp/real/comparison/notac_smalltennis_+z_side_slow_ood.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
-                <h4><span class="method-pill notac">No tactile</span>Slow z-axis</h4>
-                <p class="video-caption-detail">The no-tactile policy remains <strong class="highlight-warning">slow</strong> when small-object contact regulation is harder.</p>
+                <h4><span class="method-pill notac">No tactile</span>Off-axis OOD stop</h4>
+                <p class="video-caption-detail">The no-tactile policy starts rotating but shows <strong class="highlight-warning">obvious off-axis, slow motion</strong>; without stopping the program or the ball getting stuck between fingers, it drifts <strong class="highlight-cause">OOD</strong> and stops moving.</p>
               </div>
             </div>
             <div class="column is-one-third-desktop is-full-tablet">
@@ -926,15 +943,15 @@
       <div class="gallery-stage" id="failure-case-gallery">
         <h3 class="title is-4 gallery-stage-title">Failure Cases</h3>
         <p class="gallery-stage-note">
-          Representative baseline failures show how real contact errors accumulate into drops, stuck grasps, slow rotations, and out-of-distribution hand states.
+          Representative failures show how real contact errors accumulate into drops, stuck grasps, slow rotations, out-of-distribution hand states, and command-switching failures.
         </p>
         <div class="comparison-takeaway content">
           <p>
-            <strong class="highlight-bad">Failure summary.</strong> Across the recorded <span class="method-pill notac">No tactile</span> and <span class="method-pill scratch">From scratch</span> trials, failures mostly appear as <strong class="highlight-bad">drops after contact drift</strong>, <strong class="highlight-warning">stuck configurations</strong>, <strong class="highlight-warning">slow or side-biased rotations</strong>, and <strong class="highlight-cause">out-of-distribution hand postures</strong>. In contrast, <span class="method-pill ours">TacBPM</span> uses tactile feedback to stabilize the reusable prior and keep exploration near contact-preserving behaviors.
+            <strong class="highlight-bad">Failure summary.</strong> Across the recorded <span class="method-pill notac">No tactile</span> and <span class="method-pill scratch">From scratch</span> trials, failures mostly appear as <strong class="highlight-bad">drops after contact drift</strong>, <strong class="highlight-warning">stuck configurations</strong>, <strong class="highlight-warning">slow or side-biased rotations</strong>, and <strong class="highlight-cause">out-of-distribution hand postures</strong>. A rare <span class="method-pill ours">TacBPM</span> failure occurs under frequent command switching when an axis change arrives during unstable contact.
           </p>
         </div>
         <div class="columns is-multiline is-variable is-3 video-grid">
-          <div class="column is-one-quarter-desktop is-half-tablet">
+          <div class="column is-one-fifth-desktop is-half-tablet">
             <div class="video-tile">
               <video autoplay muted loop playsinline controls preload="none">
                 <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/failure_notac_cornerblock_pos_y_drop.mp4" type="video/mp4">
@@ -944,7 +961,7 @@
               <p class="video-caption-detail"><strong class="highlight-warning">Edge contact drift</strong> accumulates until the block is <strong class="highlight-bad">dropped</strong>.</p>
             </div>
           </div>
-          <div class="column is-one-quarter-desktop is-half-tablet">
+          <div class="column is-one-fifth-desktop is-half-tablet">
             <div class="video-tile">
               <video autoplay muted loop playsinline controls preload="none">
                 <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/failure_notac_smalltennis_pos_y_stuck.mp4" type="video/mp4">
@@ -954,7 +971,7 @@
               <p class="video-caption-detail">The hand keeps contact but cannot escape a <strong class="highlight-warning">stuck grasp</strong>.</p>
             </div>
           </div>
-          <div class="column is-one-quarter-desktop is-half-tablet">
+          <div class="column is-one-fifth-desktop is-half-tablet">
             <div class="video-tile">
               <video autoplay muted loop playsinline controls preload="none">
                 <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/failure_scratch_smalltennis_neg_z_drop.mp4" type="video/mp4">
@@ -964,7 +981,7 @@
               <p class="video-caption-detail">The policy leaves the contact regime and <strong class="highlight-bad">drops the ball</strong>.</p>
             </div>
           </div>
-          <div class="column is-one-quarter-desktop is-half-tablet">
+          <div class="column is-one-fifth-desktop is-half-tablet">
             <div class="video-tile">
               <video autoplay muted loop playsinline controls preload="none">
                 <source data-src="./static/videos/tacbfp/real/comparison/processed/clips/failure_scratch_multiface_pos_y_ood.mp4" type="video/mp4">
@@ -972,6 +989,19 @@
               </video>
               <h4><span class="method-pill scratch">From scratch</span>multiface +y</h4>
               <p class="video-caption-detail"><strong class="highlight-cause">Facet contacts</strong> push the hand into an <strong class="highlight-cause">out-of-distribution posture</strong>.</p>
+            </div>
+          </div>
+          <div class="column is-one-fifth-desktop is-half-tablet">
+            <div class="video-tile method-card-ours">
+              <video autoplay muted loop playsinline controls preload="none">
+                <source data-src="./static/videos/tacbfp/real/comparison/ours_cornerblock_switch_drop.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <h4><span class="method-pill ours">TacBPM</span>corner block switch</h4>
+              <p class="video-caption-detail failure-caption-compact">
+                <span class="caption-lead"><a href="#" class="caption-time video-seek-link">52 s</a>: -x to +z switch during <strong class="highlight-warning">unstable</strong> contact, causing a <strong class="highlight-bad">drop</strong>.</span>
+                <span class="caption-detail">Occurs after nearly one minute of frequent command switches.</span>
+              </p>
             </div>
           </div>
         </div>

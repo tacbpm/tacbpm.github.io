@@ -36,6 +36,11 @@ FONT = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf")
 WIDTH = 1920
 HEIGHT = 1080
 FPS = 30
+METHOD_LABEL_COLORS = {
+    "TacBPM": "0x006496@0.86",
+    "No tactile": "0xd95f02@0.86",
+    "From scratch": "0x9f1239@0.86",
+}
 
 
 @dataclass(frozen=True)
@@ -61,7 +66,7 @@ class GridSpec:
 TIMELINE: list[ClipSpec | GridSpec] = [
     ClipSpec(
         "sim/multi_sphere.mp4",
-        "Stage 1: multi-scale sphere specialists teach reusable contact behavior",
+        "Prior distillation | Multi-scale sphere specialists teach reusable contact behavior",
         4.0,
         speed=7.5,
         start_frac=0.10,
@@ -75,15 +80,15 @@ TIMELINE: list[ClipSpec | GridSpec] = [
             ClipSpec("sim/a2a_fruit02.mp4", "fruit_02", 7.0, speed=2.0, start_frac=0.12, x_focus=0.86),
             ClipSpec("sim/a2a_trashcan02.mp4", "trash_can_02", 7.0, speed=2.0, start_frac=0.12, x_focus=0.86),
         ),
-        caption="Downstream residual latent control transfers to diverse object geometries",
-        subcaption="A compact residual latent action adapts the tactile prior to anisotropic shapes and harder contacts",
+        caption="Downstream reuse | Residual latent control adapts the tactile prior",
+        subcaption="Compact latent corrections adapt contact behavior to anisotropic shapes and harder geometries",
         seconds=7.0,
         rows=2,
         cols=3,
     ),
     ClipSpec(
         "sim/multi_type.mp4",
-        "One prior-centered interface supports multi-object downstream rotation",
+        "Downstream reuse | One prior-centered interface supports multi-object rotation",
         4.0,
         speed=3.5,
         start_frac=0.12,
@@ -98,8 +103,8 @@ TIMELINE: list[ClipSpec | GridSpec] = [
             ClipSpec("sim/axis_condition/corner_block.mp4", "corner block", 8.0, speed=6.5, start_frac=0.00, x_focus=0.500),
             ClipSpec("sim/axis_condition/strawberry.mp4", "strawberry", 8.0, speed=6.5, start_frac=0.00, x_focus=0.500),
         ),
-        caption="Continuous axis-command control in simulation",
-        subcaption="The same tactile prior follows scheduled +x/-x/+y/-y/+z/-z commands across objects",
+        caption="Axis-conditioned control | The same latent interface follows signed commands",
+        subcaption="TacBPM follows scheduled +x/-x/+y/-y/+z/-z commands while maintaining contact",
         seconds=8.0,
         rows=2,
         cols=3,
@@ -113,8 +118,8 @@ TIMELINE: list[ClipSpec | GridSpec] = [
             ClipSpec("real/axis/multiface_axis.mp4", "multiface", 14.0, speed=2.0, start_frac=0.08, x_focus=0.15),
             ClipSpec("real/axis/strawberry_axis.mp4", "strawberry", 14.0, speed=1.7, start_frac=0.08, x_focus=0.15),
         ),
-        caption="Continuous axis-command control on the real robot",
-        subcaption="TacBPM maintains reusable tactile behavior across objects with different size and compliance",
+        caption="Real-robot transfer | Axis-conditioned TacBPM works across physical objects",
+        subcaption="Tactile-conditioned priors preserve rolling contact across size, geometry, and compliance changes",
         seconds=14.0,
         rows=2,
         cols=3,
@@ -128,8 +133,8 @@ TIMELINE: list[ClipSpec | GridSpec] = [
             ClipSpec("real/comparison/processed/clips/multiface_pos_y_notac.mp4", "No tactile +y", 6.0, speed=1.4, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/multiface_pos_y_scratch.mp4", "From scratch +y", 6.0, speed=1.4, start_frac=0.0, x_focus=0.0),
         ),
-        caption="Single-axis real-robot comparisons on the multiface object",
-        subcaption="TacBPM preserves rolling contact while baselines drop, stall, or enter OOD postures",
+        caption="Real comparisons | TacBPM keeps contact where baselines fail",
+        subcaption="Matched multiface rollouts show fewer drops, stalls, and OOD postures than No tactile or From scratch",
         seconds=6.0,
         rows=2,
         cols=3,
@@ -140,11 +145,11 @@ TIMELINE: list[ClipSpec | GridSpec] = [
             ClipSpec("real/comparison/processed/clips/multiface_neg_x_notac.mp4", "No tactile -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/multiface_neg_x_scratch.mp4", "From scratch -x", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/smalltennis_z_ours.mp4", "TacBPM tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
-            ClipSpec("real/comparison/processed/clips/smalltennis_z_notac.mp4", "No tactile tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
+            ClipSpec("real/comparison/notac_smalltennis_+z_side_slow_ood.mp4", "No tactile tennis OOD stop", 5.0, speed=1.2, start_frac=1.0, x_focus=0.0),
             ClipSpec("real/comparison/processed/clips/smalltennis_z_scratch.mp4", "From scratch tennis", 5.0, speed=1.2, start_frac=0.0, x_focus=0.0),
         ),
-        caption="Single-axis comparison on challenging real contact regimes",
-        subcaption="Small objects and faceted contacts expose slow, stuck, and drop failure modes",
+        caption="Failure modes | Challenging contacts expose baseline open-loop behavior",
+        subcaption="TacBPM stays more contact-aware; baselines drift off-axis, become OOD, get stuck, or drop",
         seconds=5.0,
         rows=2,
         cols=3,
@@ -210,6 +215,13 @@ def drawtext_filter(text: str, y: str, fontsize: int, color: str = "white") -> s
     )
 
 
+def label_bar_color(label: str) -> str:
+    for prefix, color in METHOD_LABEL_COLORS.items():
+        if label.startswith(prefix):
+            return color
+    return "black@0.36"
+
+
 def normalize_chain(duration: float, x_focus: float = 0.5, caption: str | None = None) -> str:
     filters = [
         f"fps={FPS}",
@@ -241,7 +253,7 @@ def tile_chain(tile_w: int, tile_h: int, label: str | None = None, x_focus: floa
     if label:
         filters.extend(
             [
-                "drawbox=x=0:y=0:w=iw:h=58:color=black@0.36:t=fill",
+                f"drawbox=x=0:y=0:w=iw:h=58:color={label_bar_color(label)}:t=fill",
                 drawtext_filter(label, "16", 28),
             ]
         )
