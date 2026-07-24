@@ -1,0 +1,113 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1600
+PlayResY: 912
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Arcade,DejaVu Sans,86,&H003BD4FF,&H000000FF,&H00161616,&H66000000,1,0,0,0,100,100,1,0,1,7,5,8,30,30,80,1
+Style: Scoreboard,DejaVu Sans,42,&H00FFFFFF,&H000000FF,&H00161616,&H99000000,1,0,0,0,100,100,0,0,3,8,0,9,30,48,34,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:06.00,0:00:08.33,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 1/50
+Dialogue: 1,0:00:06.00,0:00:07.10,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}1 GOAL!
+Dialogue: 0,0:00:08.33,0:00:09.20,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 2/50
+Dialogue: 1,0:00:08.33,0:00:09.43,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}2 GOALS!
+Dialogue: 0,0:00:09.20,0:00:10.08,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 3/50
+Dialogue: 1,0:00:09.20,0:00:10.30,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}3 GOALS!
+Dialogue: 0,0:00:10.08,0:00:12.12,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 4/50
+Dialogue: 1,0:00:10.08,0:00:11.18,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}4 GOALS!
+Dialogue: 0,0:00:12.12,0:00:12.45,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 5/50
+Dialogue: 1,0:00:12.12,0:00:13.22,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}5 GOALS!
+Dialogue: 0,0:00:12.45,0:00:14.27,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 6/50
+Dialogue: 1,0:00:12.45,0:00:13.55,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}6 GOALS!
+Dialogue: 0,0:00:14.27,0:00:16.00,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 7/50
+Dialogue: 1,0:00:14.27,0:00:15.37,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}7 GOALS!
+Dialogue: 0,0:00:16.00,0:00:17.17,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 8/50
+Dialogue: 1,0:00:16.00,0:00:17.10,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}8 GOALS!
+Dialogue: 0,0:00:17.17,0:00:18.17,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 9/50
+Dialogue: 1,0:00:17.17,0:00:18.27,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}9 GOALS!
+Dialogue: 0,0:00:18.17,0:00:22.27,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 10/50
+Dialogue: 1,0:00:18.17,0:00:19.27,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}10 GOALS!
+Dialogue: 0,0:00:22.27,0:00:25.10,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 11/50
+Dialogue: 1,0:00:22.27,0:00:23.37,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}11 GOALS!
+Dialogue: 0,0:00:25.10,0:00:26.33,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 12/50
+Dialogue: 1,0:00:25.10,0:00:26.20,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}12 GOALS!
+Dialogue: 0,0:00:26.33,0:00:28.15,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 13/50
+Dialogue: 1,0:00:26.33,0:00:27.43,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}13 GOALS!
+Dialogue: 0,0:00:28.15,0:00:29.22,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 14/50
+Dialogue: 1,0:00:28.15,0:00:29.25,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}14 GOALS!
+Dialogue: 0,0:00:29.22,0:00:29.48,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 15/50
+Dialogue: 1,0:00:29.22,0:00:30.32,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}15 GOALS!
+Dialogue: 0,0:00:29.48,0:00:32.33,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 16/50
+Dialogue: 1,0:00:29.48,0:00:30.58,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}16 GOALS!
+Dialogue: 0,0:00:32.33,0:00:33.43,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 17/50
+Dialogue: 1,0:00:32.33,0:00:33.43,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}17 GOALS!
+Dialogue: 0,0:00:33.43,0:00:36.00,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 18/50
+Dialogue: 1,0:00:33.43,0:00:34.53,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}18 GOALS!
+Dialogue: 0,0:00:36.00,0:00:37.35,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 19/50
+Dialogue: 1,0:00:36.00,0:00:37.10,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}19 GOALS!
+Dialogue: 0,0:00:37.35,0:00:39.07,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 20/50
+Dialogue: 1,0:00:37.35,0:00:38.45,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}20 GOALS!
+Dialogue: 0,0:00:39.07,0:00:45.17,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 21/50
+Dialogue: 1,0:00:39.07,0:00:40.17,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}21 GOALS!
+Dialogue: 0,0:00:45.17,0:00:47.05,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 22/50
+Dialogue: 1,0:00:45.17,0:00:46.27,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}22 GOALS!
+Dialogue: 0,0:00:47.05,0:00:47.48,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 23/50
+Dialogue: 1,0:00:47.05,0:00:48.15,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}23 GOALS!
+Dialogue: 0,0:00:47.48,0:00:49.25,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 24/50
+Dialogue: 1,0:00:47.48,0:00:48.58,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}24 GOALS!
+Dialogue: 0,0:00:49.25,0:00:50.22,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 25/50
+Dialogue: 1,0:00:49.25,0:00:50.35,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}25 GOALS!
+Dialogue: 0,0:00:50.22,0:00:51.13,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 26/50
+Dialogue: 1,0:00:50.22,0:00:51.32,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}26 GOALS!
+Dialogue: 0,0:00:51.13,0:00:52.40,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 27/50
+Dialogue: 1,0:00:51.13,0:00:52.23,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}27 GOALS!
+Dialogue: 0,0:00:52.40,0:00:54.05,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 28/50
+Dialogue: 1,0:00:52.40,0:00:53.50,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}28 GOALS!
+Dialogue: 0,0:00:54.05,0:00:55.07,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 29/50
+Dialogue: 1,0:00:54.05,0:00:55.15,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}29 GOALS!
+Dialogue: 0,0:00:55.07,0:00:55.45,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 30/50
+Dialogue: 1,0:00:55.07,0:00:56.17,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}30 GOALS!
+Dialogue: 0,0:00:55.45,0:00:57.10,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 31/50
+Dialogue: 1,0:00:55.45,0:00:56.55,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}31 GOALS!
+Dialogue: 0,0:00:57.10,0:00:59.08,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 32/50
+Dialogue: 1,0:00:57.10,0:00:58.20,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}32 GOALS!
+Dialogue: 0,0:00:59.08,0:01:01.05,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 33/50
+Dialogue: 1,0:00:59.08,0:01:00.18,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}33 GOALS!
+Dialogue: 0,0:01:01.05,0:01:02.47,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 34/50
+Dialogue: 1,0:01:01.05,0:01:02.15,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}34 GOALS!
+Dialogue: 0,0:01:02.47,0:01:04.25,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 35/50
+Dialogue: 1,0:01:02.47,0:01:03.57,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}35 GOALS!
+Dialogue: 0,0:01:04.25,0:01:05.33,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 36/50
+Dialogue: 1,0:01:04.25,0:01:05.35,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}36 GOALS!
+Dialogue: 0,0:01:05.33,0:01:06.33,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 37/50
+Dialogue: 1,0:01:05.33,0:01:06.43,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}37 GOALS!
+Dialogue: 0,0:01:06.33,0:01:10.17,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 38/50
+Dialogue: 1,0:01:06.33,0:01:07.43,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}38 GOALS!
+Dialogue: 0,0:01:10.17,0:01:11.38,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 39/50
+Dialogue: 1,0:01:10.17,0:01:11.27,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}39 GOALS!
+Dialogue: 0,0:01:11.38,0:01:15.33,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 40/50
+Dialogue: 1,0:01:11.38,0:01:12.48,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}40 GOALS!
+Dialogue: 0,0:01:15.33,0:01:17.33,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 41/50
+Dialogue: 1,0:01:15.33,0:01:16.43,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}41 GOALS!
+Dialogue: 0,0:01:17.33,0:01:21.00,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 42/50
+Dialogue: 1,0:01:17.33,0:01:18.43,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}42 GOALS!
+Dialogue: 0,0:01:21.00,0:01:24.08,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 43/50
+Dialogue: 1,0:01:21.00,0:01:22.10,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}43 GOALS!
+Dialogue: 0,0:01:24.08,0:01:25.30,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 44/50
+Dialogue: 1,0:01:24.08,0:01:25.18,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}44 GOALS!
+Dialogue: 0,0:01:25.30,0:01:26.33,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 45/50
+Dialogue: 1,0:01:25.30,0:01:26.40,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}45 GOALS!
+Dialogue: 0,0:01:26.33,0:01:28.00,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 46/50
+Dialogue: 1,0:01:26.33,0:01:27.43,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}46 GOALS!
+Dialogue: 0,0:01:28.00,0:01:28.33,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 47/50
+Dialogue: 1,0:01:28.00,0:01:29.10,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}47 GOALS!
+Dialogue: 0,0:01:28.33,0:01:31.25,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 48/50
+Dialogue: 1,0:01:28.33,0:01:29.43,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}48 GOALS!
+Dialogue: 0,0:01:31.25,0:01:32.00,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 49/50
+Dialogue: 1,0:01:31.25,0:01:32.35,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}49 GOALS!
+Dialogue: 0,0:01:32.00,0:01:32.76,Scoreboard,,0,0,0,,{\an9\pos(1540,48)}GOALS 50/50
+Dialogue: 1,0:01:32.00,0:01:32.76,Arcade,,0,0,0,,{\an8\pos(800,120)\fad(35,320)\fscx65\fscy65\t(0,180,\fscx142\fscy142)\t(180,520,\fscx100\fscy100)}50 GOALS!

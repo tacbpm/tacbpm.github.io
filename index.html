@@ -219,6 +219,7 @@
       <a href="#prior-gallery">Prior</a>
       <a href="#downstream-gallery">Downstream</a>
       <a href="#axis-gallery">Axis Control</a>
+      <a href="#arm-hand-gallery">Arm-Hand</a>
       <a href="#real-comparison-gallery">Real Comparisons</a>
       <a href="#failure-case-gallery">Failure Cases</a>
       <a href="#BibTeX">BibTeX</a>
@@ -420,7 +421,7 @@
       <h2 class="title is-3 has-text-centered" style="color: #006496;font-weight: bolder;">Qualitative Demonstrations</h2>
       <div class="content has-text-justified">
         <p>
-          The gallery follows the same progression as TacBPM itself: first learning a reusable tactile behavior prior, then reusing it for downstream object transfer, and finally conditioning the reused prior on commanded rotation axes in simulation and on the real robot.
+          The gallery follows the same progression as TacBPM itself: first learning a reusable tactile behavior prior, then reusing it for downstream object transfer, conditioning the reused prior on commanded rotation axes in simulation and on the real robot, and finally extending the interface to an arm-hand embodiment.
         </p>
       </div>
 
@@ -773,6 +774,30 @@
           </div>
         </div>
       </div>
+      </div>
+
+      <div class="gallery-stage" id="arm-hand-gallery">
+        <h3 class="title is-4 gallery-stage-title">Arm-Hand Embodiment Transfer</h3>
+        <p class="gallery-stage-note">
+          TacBPM can also serve as the behavior prior for a larger simulated embodiment. This rollout uses the North robot right arm and right hand to pick up a hammer and continuously reach 50 target goals, showing that the prior-centered residual interface can remain useful beyond hand-only reorientation.
+        </p>
+        <div class="experiment-subsection">
+          <h4 class="title is-5 subsection-title">North arm-hand hammer manipulation, 50 goals</h4>
+          <div class="columns is-centered">
+            <div class="column is-four-fifths">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/50_goals_goal_counter_preview.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>North right arm + right hand, hammer, 50-goal sequence</h4>
+                <p class="video-caption-detail">
+                  In simulation, a TacBPM-trained arm-hand policy lifts the hammer and sequentially reaches 50 goals, testing whether the learned tactile behavior prior can support longer-horizon embodied manipulation with a larger kinematic chain.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="gallery-stage" id="real-comparison-gallery">
