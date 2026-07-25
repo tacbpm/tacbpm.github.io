@@ -289,13 +289,15 @@
             Overview timeline:
             <a href="#" class="caption-time video-seek-link">0-2.5 s</a> TacBPM motivation,
             <a href="#" class="caption-time video-seek-link">2.5-6.5 s</a> multi-scale tactile prior,
-            <a href="#" class="caption-time video-seek-link">6.5-13.5 s</a> residual latent downstream reuse,
-            <a href="#" class="caption-time video-seek-link">13.5-17.5 s</a> multi-object rotation,
-            <a href="#" class="caption-time video-seek-link">17.5-25.5 s</a> continuous axis control in simulation,
-            <a href="#" class="caption-time video-seek-link">25.5-39.5 s</a> continuous axis control on the real robot,
-            <a href="#" class="caption-time video-seek-link">39.5-45.5 s</a> single-axis multiface comparisons,
-            <a href="#" class="caption-time video-seek-link">45.5-50.5 s</a> challenging +z tennis comparisons,
-            <a href="#" class="caption-time video-seek-link">50.5-53 s</a> takeaway.
+            <a href="#" class="caption-time video-seek-link">6.5-12.5 s</a> residual latent downstream reuse,
+            <a href="#" class="caption-time video-seek-link">12.5-16.5 s</a> multi-object rotation,
+            <a href="#" class="caption-time video-seek-link">16.5-23.5 s</a> continuous axis control in simulation,
+            <a href="#" class="caption-time video-seek-link">23.5-33.5 s</a> continuous axis control on the real robot,
+            <a href="#" class="caption-time video-seek-link">33.5-39.5 s</a> arm-hand first-goal transfer,
+            <a href="#" class="caption-time video-seek-link">39.5-44.5 s</a> real arm-hand 2x2 rollouts,
+            <a href="#" class="caption-time video-seek-link">44.5-49.5 s</a> single-axis multiface comparisons,
+            <a href="#" class="caption-time video-seek-link">49.5-53.5 s</a> challenging +z tennis comparisons,
+            <a href="#" class="caption-time video-seek-link">53.5-56 s</a> takeaway.
           </p>
         </div>
       </div>
@@ -794,6 +796,54 @@
                 <p class="video-caption-detail">
                   In simulation, a TacBPM-trained arm-hand policy lifts the hammer and sequentially reaches 50 goals, testing whether the learned tactile behavior prior can support longer-horizon embodied manipulation with a larger kinematic chain.
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="experiment-subsection">
+          <h4 class="title is-5 subsection-title">Real North arm-hand hammer grasp, lift, and reorientation</h4>
+          <p class="video-caption-detail">
+            These real-robot clips show the North right arm and right hand grasping, lifting, and reorienting a hammer, complementing the simulated 50-goal arm-hand transfer rollout.
+          </p>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq1_h264.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Real rollout 1</h4>
+                <p class="video-caption-detail">Hammer grasp and in-hand stabilization on the North arm-hand platform.</p>
+              </div>
+            </div>
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq2_h264.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Real rollout 2</h4>
+                <p class="video-caption-detail">The arm-hand system lifts the hammer while maintaining tactile contact.</p>
+              </div>
+            </div>
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq3_h264.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Real rollout 3</h4>
+                <p class="video-caption-detail">The hand changes the hammer pose after lifting it from the support surface.</p>
+              </div>
+            </div>
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq4_h264.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Real rollout 4</h4>
+                <p class="video-caption-detail">A real hammer reorientation rollout with stable arm-hand contact.</p>
               </div>
             </div>
           </div>

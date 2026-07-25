@@ -102,7 +102,7 @@ ScaledBorderAndShadow: yes
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Arcade,DejaVu Sans,86,&H003BD4FF,&H000000FF,&H00161616,&H66000000,1,0,0,0,100,100,1,0,1,7,5,8,30,30,80,1
-Style: Scoreboard,DejaVu Sans,42,&H00FFFFFF,&H000000FF,&H00161616,&H99000000,1,0,0,0,100,100,0,0,3,8,0,9,30,48,34,1
+Style: Scoreboard,DejaVu Sans,52,&H00FFFFFF,&H000000FF,&H00000000,&H66000000,1,0,0,0,100,100,0,0,1,7,3,9,30,48,34,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -117,7 +117,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         # Persistent counter until the next goal.
         events.append(
             "Dialogue: 0,{start},{end},Scoreboard,,0,0,0,,"
-            "{{\\an9\\pos(1540,48)}}GOALS {idx}/{total}".format(
+            "{{\\an9\\pos(1540,52)\\bord7\\shad3}}GOALS {idx}/{total}".format(
                 start=ass_time(start),
                 end=ass_time(scoreboard_end),
                 idx=idx,
