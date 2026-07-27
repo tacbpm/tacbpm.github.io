@@ -66,7 +66,7 @@ class GridSpec:
 TIMELINE: list[ClipSpec | GridSpec] = [
     ClipSpec(
         "sim/multi_sphere.mp4",
-        "Prior distillation | Multi-scale sphere specialists teach reusable contact behavior",
+        "Prior distillation | Multi-scale contact prior",
         4.0,
         speed=7.5,
         start_frac=0.10,
@@ -88,24 +88,24 @@ TIMELINE: list[ClipSpec | GridSpec] = [
     ),
     ClipSpec(
         "sim/multi_type.mp4",
-        "Downstream reuse | One prior-centered interface supports multi-object rotation",
-        4.0,
-        speed=3.5,
+        "Downstream reuse | Multi-object rotation",
+        14.0 / 3.0,
+        speed=3.0,
         start_frac=0.12,
         x_focus=0.15,
     ),
     GridSpec(
         clips=(
-            ClipSpec("sim/axis_condition/block_03.mp4", "block_03", 8.0, speed=6.5, start_frac=0.00, x_focus=0.500),
-            ClipSpec("sim/axis_condition/block_08.mp4", "block_08", 8.0, speed=6.5, start_frac=0.00, x_focus=0.500),
-            ClipSpec("sim/axis_condition/block_14.mp4", "block_14", 8.0, speed=6.5, start_frac=0.00, x_focus=0.500),
-            ClipSpec("sim/axis_condition/bottle_02.mp4", "bottle_02", 8.0, speed=6.5, start_frac=0.00, x_focus=0.500),
-            ClipSpec("sim/axis_condition/corner_block.mp4", "corner block", 8.0, speed=6.5, start_frac=0.00, x_focus=0.500),
-            ClipSpec("sim/axis_condition/strawberry.mp4", "strawberry", 8.0, speed=6.5, start_frac=0.00, x_focus=0.500),
+            ClipSpec("sim/axis_condition/block_03.mp4", "block_03", 12.0, speed=5.0, start_frac=0.00, x_focus=0.500),
+            ClipSpec("sim/axis_condition/block_08.mp4", "block_08", 12.0, speed=5.0, start_frac=0.00, x_focus=0.500),
+            ClipSpec("sim/axis_condition/block_14.mp4", "block_14", 12.0, speed=5.0, start_frac=0.00, x_focus=0.500),
+            ClipSpec("sim/axis_condition/bottle_02.mp4", "bottle_02", 12.0, speed=5.0, start_frac=0.00, x_focus=0.500),
+            ClipSpec("sim/axis_condition/corner_block.mp4", "corner block", 12.0, speed=5.0, start_frac=0.00, x_focus=0.500),
+            ClipSpec("sim/axis_condition/strawberry.mp4", "strawberry", 12.0, speed=5.0, start_frac=0.00, x_focus=0.500),
         ),
         caption="Axis-conditioned control | The same latent interface follows signed commands",
         subcaption="TacBPM follows scheduled +x/-x/+y/-y/+z/-z commands while maintaining contact",
-        seconds=7.0,
+        seconds=12.0,
         rows=2,
         cols=3,
     ),
@@ -120,30 +120,9 @@ TIMELINE: list[ClipSpec | GridSpec] = [
         ),
         caption="Real-robot transfer | Axis-conditioned TacBPM works across physical objects",
         subcaption="Tactile-conditioned priors preserve rolling contact across size, geometry, and compliance changes",
-        seconds=10.0,
+        seconds=8.0,
         rows=2,
         cols=3,
-    ),
-    ClipSpec(
-        "arm/50_goals.mp4",
-        "Arm-hand transfer | Lift the hammer and reach the first goal",
-        6.0,
-        speed=3.5,
-        start_frac=0.0,
-        x_focus=0.45,
-    ),
-    GridSpec(
-        clips=(
-            ClipSpec("arm/grasp_repose_real/seq1_h264.mp4", "real arm-hand 1", 5.0, speed=1.6, start_frac=0.0, x_focus=0.50),
-            ClipSpec("arm/grasp_repose_real/seq2_h264.mp4", "real arm-hand 2", 5.0, speed=1.6, start_frac=0.0, x_focus=0.50),
-            ClipSpec("arm/grasp_repose_real/seq3_h264.mp4", "real arm-hand 3", 5.0, speed=1.6, start_frac=0.0, x_focus=0.50),
-            ClipSpec("arm/grasp_repose_real/seq4_h264.mp4", "real arm-hand 4", 5.0, speed=1.6, start_frac=0.0, x_focus=0.50),
-        ),
-        caption="Real arm-hand transfer | Hammer grasp, lift, and reorientation",
-        subcaption="Four North arm-hand rollouts shown as a compact 2x2 real-robot grid",
-        seconds=5.0,
-        rows=2,
-        cols=2,
     ),
     GridSpec(
         clips=(
@@ -174,6 +153,40 @@ TIMELINE: list[ClipSpec | GridSpec] = [
         seconds=4.0,
         rows=2,
         cols=3,
+    ),
+    ClipSpec(
+        "arm/50_goals.mp4",
+        "Arm-hand Grasp-to-AnyPose | Reach consecutive goals after grasp and lift",
+        8.0,
+        speed=2.0,
+        start_frac=0.0,
+        x_focus=0.45,
+    ),
+    GridSpec(
+        clips=(
+            ClipSpec("arm/sim/small_hammer.mp4", "small hammer", 3.5, speed=1.0, start_frac=0.0, x_focus=0.50),
+            ClipSpec("arm/sim/blue_brush.mp4", "blue brush", 3.5, speed=1.0, start_frac=0.0, x_focus=0.50),
+            ClipSpec("arm/sim/staples_marker.mp4", "staples marker", 3.5, speed=1.0, start_frac=0.0, x_focus=0.50),
+            ClipSpec("arm/sim/mallet_hammer.mp4", "mallet hammer", 3.5, speed=1.0, start_frac=0.0, x_focus=0.50),
+        ),
+        caption="Arm-hand object transfer | Held-out tool geometries",
+        subcaption="A 2x2 simulation grid tests grasp, lift, transport, and goal-pose reaching beyond the hammer teacher",
+        seconds=3.5,
+        rows=2,
+        cols=2,
+    ),
+    GridSpec(
+        clips=(
+            ClipSpec("arm/grasp_repose_real/seq1_h264.mp4", "real arm-hand 1", 5.0, speed=1.6, start_frac=0.0, x_focus=0.50),
+            ClipSpec("arm/grasp_repose_real/seq2_h264.mp4", "real arm-hand 2", 5.0, speed=1.6, start_frac=0.0, x_focus=0.50),
+            ClipSpec("arm/grasp_repose_real/seq3_h264.mp4", "real arm-hand 3", 5.0, speed=1.6, start_frac=0.0, x_focus=0.50),
+            ClipSpec("arm/grasp_repose_real/seq4_h264.mp4", "real arm-hand 4", 5.0, speed=1.6, start_frac=0.0, x_focus=0.50),
+        ),
+        caption="Real arm-hand validation | Hammer grasp, lift, and reorientation",
+        subcaption="Four hardware rollouts stress contact maintenance under tool inertia and arm motion",
+        seconds=5.0,
+        rows=2,
+        cols=2,
     ),
 ]
 
@@ -247,7 +260,23 @@ def label_badge_width(label: str) -> int:
     return min(560, max(220, len(label) * 18 + 54))
 
 
-def normalize_chain(duration: float, x_focus: float = 0.5, caption: str | None = None) -> str:
+def speed_badge_text(speed: float) -> str | None:
+    return None
+
+
+def speed_badge_filters(speed: float, x: str, y: str) -> list[str]:
+    text = speed_badge_text(speed)
+    if not text:
+        return []
+    text_x = "w-212" if x == "iw-230" else str(int(x) + 18)
+    text_y = str(int(y) + 10)
+    return [
+        f"drawbox=x={x}:y={y}:w=170:h=42:color=black@0.34:t=fill",
+        drawtext_filter(text, text_y, 22, "white@0.86", x=text_x),
+    ]
+
+
+def normalize_chain(duration: float, x_focus: float = 0.5, caption: str | None = None, speed: float = 1.0) -> str:
     filters = [
         f"fps={FPS}",
         f"scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase",
@@ -257,6 +286,7 @@ def normalize_chain(duration: float, x_focus: float = 0.5, caption: str | None =
         "fade=t=in:st=0:d=0.25",
         f"fade=t=out:st={max(duration - 0.35, 0):.3f}:d=0.35",
     ]
+    filters.extend(speed_badge_filters(speed, "iw-230", "45"))
     if caption:
         filters.extend(
             [
@@ -267,7 +297,7 @@ def normalize_chain(duration: float, x_focus: float = 0.5, caption: str | None =
     return ",".join(filters)
 
 
-def tile_chain(tile_w: int, tile_h: int, label: str | None = None, x_focus: float = 0.5) -> str:
+def tile_chain(tile_w: int, tile_h: int, label: str | None = None, x_focus: float = 0.5, speed: float = 1.0) -> str:
     filters = [
         f"fps={FPS}",
         f"scale={tile_w}:{tile_h}:force_original_aspect_ratio=increase",
@@ -275,6 +305,7 @@ def tile_chain(tile_w: int, tile_h: int, label: str | None = None, x_focus: floa
         "setsar=1",
         "format=yuv420p",
     ]
+    filters.extend(speed_badge_filters(speed, "18", "16"))
     if label:
         badge_w = label_badge_width(label)
         filters.extend(
@@ -339,7 +370,7 @@ def make_clip_segment(spec: ClipSpec, index: int, tmp: Path) -> Path:
     out = tmp / f"segment_{index:02d}.mp4"
     vf = (
         f"setpts=PTS/{spec.speed:.4f},"
-        + normalize_chain(output_duration, x_focus=spec.x_focus, caption=spec.caption)
+        + normalize_chain(output_duration, x_focus=spec.x_focus, caption=spec.caption, speed=spec.speed)
     )
     run(
         [
@@ -382,7 +413,7 @@ def make_tile_segment(spec: ClipSpec, index: int, tmp: Path, tile_w: int, tile_h
     start = min(max(total * spec.start_frac, 0.0), max_start)
     source_duration = min(source_need, max(total - start, 0.2))
     out = tmp / f"tile_{index:02d}.mp4"
-    vf = f"setpts=PTS/{spec.speed:.4f}," + tile_chain(tile_w, tile_h, label=spec.caption, x_focus=spec.x_focus)
+    vf = f"setpts=PTS/{spec.speed:.4f}," + tile_chain(tile_w, tile_h, label=spec.caption, x_focus=spec.x_focus, speed=spec.speed)
     run(
         [
             "ffmpeg",

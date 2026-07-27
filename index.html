@@ -219,9 +219,8 @@
       <a href="#prior-gallery">Prior</a>
       <a href="#downstream-gallery">Downstream</a>
       <a href="#axis-gallery">Axis Control</a>
-      <a href="#arm-hand-gallery">Arm-Hand</a>
       <a href="#real-comparison-gallery">Real Comparisons</a>
-      <a href="#failure-case-gallery">Failure Cases</a>
+      <a href="#arm-hand-gallery">Arm-Hand</a>
       <a href="#BibTeX">BibTeX</a>
     </div>
   </nav>
@@ -290,14 +289,16 @@
             <a href="#" class="caption-time video-seek-link">0-2.5 s</a> TacBPM motivation,
             <a href="#" class="caption-time video-seek-link">2.5-6.5 s</a> multi-scale tactile prior,
             <a href="#" class="caption-time video-seek-link">6.5-12.5 s</a> residual latent downstream reuse,
-            <a href="#" class="caption-time video-seek-link">12.5-16.5 s</a> multi-object rotation,
-            <a href="#" class="caption-time video-seek-link">16.5-23.5 s</a> continuous axis control in simulation,
-            <a href="#" class="caption-time video-seek-link">23.5-33.5 s</a> continuous axis control on the real robot,
-            <a href="#" class="caption-time video-seek-link">33.5-39.5 s</a> arm-hand first-goal transfer,
-            <a href="#" class="caption-time video-seek-link">39.5-44.5 s</a> real arm-hand 2x2 rollouts,
-            <a href="#" class="caption-time video-seek-link">44.5-49.5 s</a> single-axis multiface comparisons,
-            <a href="#" class="caption-time video-seek-link">49.5-53.5 s</a> challenging +z tennis comparisons,
-            <a href="#" class="caption-time video-seek-link">53.5-56 s</a> takeaway.
+            <a href="#" class="caption-time video-seek-link">12.5-17.2 s</a> multi-object rotation,
+            <a href="#" class="caption-time video-seek-link">17.2-29.2 s</a> continuous axis control in simulation,
+            <a href="#" class="caption-time video-seek-link">29.2-37.2 s</a> continuous axis control on the real robot,
+            <a href="#" class="caption-time video-seek-link">37.2-42.2 s</a> single-axis multiface comparisons,
+            <a href="#" class="caption-time video-seek-link">42.2-46.2 s</a> challenging +z tennis comparisons,
+            <a href="#" class="caption-time video-seek-link">46.2-54.2 s</a> arm-hand consecutive-goal transfer,
+            <a href="#" class="caption-time video-seek-link">54.2-57.7 s</a> arm-hand held-out tool transfer,
+            <a href="#" class="caption-time video-seek-link">57.7-62.7 s</a> real arm-hand hammer validation,
+            <a href="#" class="caption-time video-seek-link">62.7-65.2 s</a> takeaway.
+            For compact presentation, some clips are played back faster than real time.
           </p>
         </div>
       </div>
@@ -423,7 +424,7 @@
       <h2 class="title is-3 has-text-centered" style="color: #006496;font-weight: bolder;">Qualitative Demonstrations</h2>
       <div class="content has-text-justified">
         <p>
-          The gallery follows the same progression as TacBPM itself: first learning a reusable tactile behavior prior, then reusing it for downstream object transfer, conditioning the reused prior on commanded rotation axes in simulation and on the real robot, and finally extending the interface to an arm-hand embodiment.
+          The gallery is organized as a reviewer-facing stress test of the same learned interface: TacBPM first distills reusable tactile contact behavior, then reuses it for harder object geometries, signed-axis commands, hardware rollouts, and finally a larger arm-hand embodiment that must acquire, lift, transport, and reorient a tool.
         </p>
       </div>
 
@@ -778,88 +779,19 @@
       </div>
       </div>
 
-      <div class="gallery-stage" id="arm-hand-gallery">
-        <h3 class="title is-4 gallery-stage-title">Arm-Hand Embodiment Transfer</h3>
-        <p class="gallery-stage-note">
-          TacBPM can also serve as the behavior prior for a larger simulated embodiment. This rollout uses the North robot right arm and right hand to pick up a hammer and continuously reach 50 target goals, showing that the prior-centered residual interface can remain useful beyond hand-only reorientation.
-        </p>
-        <div class="experiment-subsection">
-          <h4 class="title is-5 subsection-title">North arm-hand hammer manipulation, 50 goals</h4>
-          <div class="columns is-centered">
-            <div class="column is-four-fifths">
-              <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
-                  <source data-src="./static/videos/tacbfp/arm/50_goals_goal_counter_preview.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <h4>North right arm + right hand, hammer, 50-goal sequence</h4>
-                <p class="video-caption-detail">
-                  In simulation, a TacBPM-trained arm-hand policy lifts the hammer and sequentially reaches 50 goals, testing whether the learned tactile behavior prior can support longer-horizon embodied manipulation with a larger kinematic chain.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="experiment-subsection">
-          <h4 class="title is-5 subsection-title">Real North arm-hand hammer grasp, lift, and reorientation</h4>
-          <p class="video-caption-detail">
-            These real-robot clips show the North right arm and right hand grasping, lifting, and reorienting a hammer, complementing the simulated 50-goal arm-hand transfer rollout.
-          </p>
-          <div class="columns is-multiline is-centered">
-            <div class="column is-one-quarter-desktop is-half-tablet">
-              <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
-                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq1_h264.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <h4>Real rollout 1</h4>
-                <p class="video-caption-detail">Hammer grasp and in-hand stabilization on the North arm-hand platform.</p>
-              </div>
-            </div>
-            <div class="column is-one-quarter-desktop is-half-tablet">
-              <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
-                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq2_h264.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <h4>Real rollout 2</h4>
-                <p class="video-caption-detail">The arm-hand system lifts the hammer while maintaining tactile contact.</p>
-              </div>
-            </div>
-            <div class="column is-one-quarter-desktop is-half-tablet">
-              <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
-                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq3_h264.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <h4>Real rollout 3</h4>
-                <p class="video-caption-detail">The hand changes the hammer pose after lifting it from the support surface.</p>
-              </div>
-            </div>
-            <div class="column is-one-quarter-desktop is-half-tablet">
-              <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
-                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq4_h264.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <h4>Real rollout 4</h4>
-                <p class="video-caption-detail">A real hammer reorientation rollout with stable arm-hand contact.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="gallery-stage" id="real-comparison-gallery">
-        <h3 class="title is-4 gallery-stage-title">Real Single-Axis Comparisons</h3>
+        <h3 class="title is-4 gallery-stage-title">Real-Robot Comparisons and Failure Cases</h3>
         <p class="gallery-stage-note">
-          These clips isolate individual real-robot axis commands, in contrast to the continuous command schedules shown above.
+          Matched single-axis comparisons and representative failures are grouped together because they answer the same reviewer question: when contact becomes hard on hardware, does the tactile prior preserve usable rolling behavior while ablations drift, stall, drop, or leave the training distribution?
         </p>
         <div class="content has-text-justified">
           <p>
             The following videos compare <span class="method-pill ours">TacBPM</span>, <span class="method-pill notac">No tactile</span>, and <span class="method-pill scratch">From scratch</span> on isolated real-robot axis commands. The comparison highlights that <strong class="highlight-method">tactile-conditioned residual latent control</strong> maintains usable rolling contact, while the baselines are more likely to show <strong class="highlight-warning">slow progress</strong>, <strong class="highlight-bad">drops</strong>, or <strong class="highlight-cause">out-of-distribution postures</strong>.
           </p>
         </div>
+
+        <div class="experiment-subsection" id="real-comparison-subsection">
+          <h4 class="title is-5 subsection-title">Matched single-axis comparisons</h4>
 
         <div class="real-comparison-group">
           <div class="real-comparison-header">
@@ -1013,11 +945,11 @@
           </div>
         </div>
 
-      </div>
+        </div>
 
-      <div class="gallery-stage" id="failure-case-gallery">
-        <h3 class="title is-4 gallery-stage-title">Failure Cases</h3>
-        <p class="gallery-stage-note">
+        <div class="experiment-subsection" id="failure-case-gallery">
+          <h4 class="title is-5 subsection-title">Failure cases: contact-loss and OOD modes</h4>
+          <p class="gallery-stage-note">
           Representative failures show how real contact errors accumulate into drops, stuck grasps, slow rotations, out-of-distribution hand states, and command-switching failures.
         </p>
         <div class="comparison-takeaway content">
@@ -1081,6 +1013,112 @@
           </div>
         </div>
       </div>
+
+      </div>
+
+      <div class="gallery-stage" id="arm-hand-gallery">
+        <h3 class="title is-4 gallery-stage-title">Arm-Hand Embodiment Instantiation</h3>
+        <p class="gallery-stage-note">
+          Grasp-to-AnyPose instantiates the same prior-centered pipeline on the North right arm and hand. Instead of starting from an already supported in-hand object, the robot must grasp a tool-like object, lift and transport it, and then move it toward sampled goal poses while preserving useful fingertip contact. In this setting, TacBPM reuses a rubber-hammer teacher prior with binary fingertip contacts and a frozen decoder, testing whether the latent interface remains useful when arm motion, gravity loading, object geometry, and hand reorientation are coupled.
+        </p>
+        <div class="experiment-subsection">
+          <h4 class="title is-5 subsection-title">Simulated Grasp-to-AnyPose on held-out tool geometries</h4>
+          <p class="video-caption-detail">
+            The four simulation clips show category-level generalization from the rubber-hammer teacher family to new tool geometries. Each rollout requires the policy to acquire the object, maintain contact through lift and transport, and reduce both position and orientation error toward a random goal pose.
+          </p>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/sim/small_hammer.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Small hammer</h4>
+                <p class="video-caption-detail">A compact hammer tests whether the prior can preserve grasp stability while adapting to a smaller handle and head geometry.</p>
+              </div>
+            </div>
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/sim/blue_brush.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Blue brush</h4>
+                <p class="video-caption-detail">The elongated brush changes the load distribution and contact affordances relative to the rubber-hammer teachers.</p>
+              </div>
+            </div>
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/sim/staples_marker.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Staples marker</h4>
+                <p class="video-caption-detail">The marker geometry stresses grasp acquisition and goal-pose reaching on a thinner object with different support contacts.</p>
+              </div>
+            </div>
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/sim/mallet_hammer.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Mallet hammer</h4>
+                <p class="video-caption-detail">The heavier mallet-like shape tests transport and reorientation under a larger head and stronger moment arm.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="experiment-subsection">
+          <h4 class="title is-5 subsection-title">Real North arm-hand hammer grasp, lift, and reorientation</h4>
+          <p class="video-caption-detail">
+            The real-robot clips are not meant as isolated demos of a scripted grasp; they expose the same contact-maintenance challenge under hardware effects such as compliance, calibration error, tool inertia, and changing wrist posture. The 2x2 layout highlights that the arm-hand instantiation repeats across several rollouts rather than appearing only in a single favorable take.
+          </p>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq1_h264.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Real rollout 1</h4>
+                <p class="video-caption-detail">Initial tool acquisition: the arm places the hand while the fingers stabilize an asymmetric hammer instead of a compact object.</p>
+              </div>
+            </div>
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq2_h264.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Real rollout 2</h4>
+                <p class="video-caption-detail">Lift under changing load: contact must remain usable as gravity and the hammer's moment arm perturb the grasp.</p>
+              </div>
+            </div>
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq3_h264.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Real rollout 3</h4>
+                <p class="video-caption-detail">Post-lift pose adjustment: the hand reorients the hammer after support is removed, where small slips can quickly compound.</p>
+              </div>
+            </div>
+            <div class="column is-one-quarter-desktop is-half-tablet">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq4_h264.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>Real rollout 4</h4>
+                <p class="video-caption-detail">Repeated hardware validation: the same prior-centered interface supports another grasp-lift-reorientation rollout.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
