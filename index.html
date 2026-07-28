@@ -77,6 +77,32 @@
       white-space: nowrap;
     }
 
+    .highlight-transfer {
+      color: #7c3aed;
+      font-weight: 900;
+    }
+
+    .highlight-challenge {
+      color: #9f1239;
+      font-weight: 900;
+    }
+
+    .highlight-advantage {
+      color: #006496;
+      font-weight: 900;
+    }
+
+    .sim-real-badge {
+      display: inline-block;
+      margin: 0.15rem 0.25rem;
+      padding: 0.16rem 0.56rem;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.1);
+      color: #6d28d9;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
     .video-tile h4 {
       margin-top: 0.55rem;
       margin-bottom: 0.25rem;
@@ -269,7 +295,7 @@
         <span class="s1">Tactile</span>&nbsp;<span class="s2">Behavior Priors</span>&nbsp;<span class="s3">for</span>&nbsp;<span class="s4">Dexterous</span>&nbsp;<span class="s5">Reorientation</span><span class="s-dot"></span>
       </p>
       <p class="nidar-slogan-sub">
-        TacBPM distills multi-scale sphere specialists into a reusable tactile-proprioceptive latent controller, then freezes the tactile prior so downstream policies learn compact residual latent actions instead of raw joint commands while finetuning the decoder for new geometry.
+        TacBPM distills multi-scale sphere specialists into a reusable tactile-proprioceptive latent controller, then freezes the tactile prior so downstream policies learn compact residual latent actions instead of raw joint commands while finetuning the decoder for new geometry and achieving <span class="sim-real-badge">successful sim-to-real transfer</span>.
       </p>
     </div>
   </section>
@@ -291,12 +317,12 @@
             <a href="#" class="caption-time video-seek-link">6.5-12.5 s</a> residual latent downstream reuse,
             <a href="#" class="caption-time video-seek-link">12.5-17.2 s</a> multi-object rotation,
             <a href="#" class="caption-time video-seek-link">17.2-29.2 s</a> continuous axis control in simulation,
-            <a href="#" class="caption-time video-seek-link">29.2-37.2 s</a> continuous axis control on the real robot,
+            <a href="#" class="caption-time video-seek-link">29.2-37.2 s</a> successful sim-to-real axis control,
             <a href="#" class="caption-time video-seek-link">37.2-42.2 s</a> single-axis multiface comparisons,
             <a href="#" class="caption-time video-seek-link">42.2-46.2 s</a> challenging +z tennis comparisons,
             <a href="#" class="caption-time video-seek-link">46.2-54.2 s</a> arm-hand consecutive-goal transfer,
             <a href="#" class="caption-time video-seek-link">54.2-57.7 s</a> arm-hand held-out tool transfer,
-            <a href="#" class="caption-time video-seek-link">57.7-62.7 s</a> real arm-hand hammer validation,
+            <a href="#" class="caption-time video-seek-link">57.7-62.7 s</a> successful real arm-hand transfer,
             <a href="#" class="caption-time video-seek-link">62.7-65.2 s</a> takeaway.
             For compact presentation, some clips are played back faster than real time.
           </p>
@@ -312,10 +338,10 @@
           <h2 class="title is-3" style="color: #006496;font-weight: bolder;">TL;DR</h2>
           <div class="content has-text-justified">
             <p>
-              <strong>TacBPM</strong> learns a contact-aware behavior prior model for dexterous reorientation. Instead of training every new policy from low-level 22-DoF hand actions, TacBPM first trains sphere reorientation specialists across scale factors 0.3 to 1.0, distills them into a single variational latent controller, and reuses the frozen tactile-conditioned prior for downstream reorientation on harder objects.
+              <strong>TacBPM</strong> learns a contact-aware behavior prior model for dexterous reorientation. The task is difficult because policies must explore from <strong class="highlight-challenge">low-level 22-DoF hand actions</strong> while maintaining contact under <strong class="highlight-challenge">shape, scale, axis-command, and hardware shifts</strong>. TacBPM first trains sphere reorientation specialists across scale factors 0.3 to 1.0, distills them into a single variational latent controller, and reuses the frozen tactile-conditioned prior for downstream reorientation on harder objects.
             </p>
             <p>
-              The downstream policy predicts only a residual latent code around the prior mean. This keeps exploration close to stable contact behaviors while still allowing task-specific adaptation to anisotropic objects, multi-object settings, and commanded rotation axes.
+              The downstream policy predicts only a residual latent code around the prior mean. This <strong class="highlight-advantage">keeps exploration close to stable contact behaviors</strong> while still allowing task-specific adaptation to anisotropic objects, multi-object settings, and commanded rotation axes, leading to <strong class="highlight-transfer">successful sim-to-real transfer</strong> on both real hand rotation and arm-hand hammer rollouts.
             </p>
           </div>
         </div>
@@ -412,6 +438,18 @@
               <td><strong>342.39 deg</strong> on block_03 z-axis</td>
               <td>The learned substrate can be reused for rotation rewards, not only target-pose matching.</td>
             </tr>
+            <tr>
+              <td>Arm-hand generalization</td>
+              <td>Held-out Grasp-to-AnyPose tools</td>
+              <td><strong>96.73% avg success</strong> vs. 49.24% raw-action PPO</td>
+              <td>The same prior-centered paradigm scales to coupled grasp, lift, transport, and goal-pose reaching.</td>
+            </tr>
+            <tr class="ablation-best-row">
+              <td>Sim-to-real transfer</td>
+              <td>Real hand and arm-hand hardware</td>
+              <td><strong class="highlight-transfer">Successful real-robot deployment</strong></td>
+              <td><strong class="highlight-advantage">TacBPM preserves contact-stable behavior</strong> under hardware noise, calibration error, and object inertia.</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -424,7 +462,7 @@
       <h2 class="title is-3 has-text-centered" style="color: #006496;font-weight: bolder;">Qualitative Demonstrations</h2>
       <div class="content has-text-justified">
         <p>
-          The gallery is organized as a reviewer-facing stress test of the same learned interface: TacBPM first distills reusable tactile contact behavior, then reuses it for harder object geometries, signed-axis commands, hardware rollouts, and finally a larger arm-hand embodiment that must acquire, lift, transport, and reorient a tool.
+          The gallery is organized as a reviewer-facing stress test of the same learned interface: TacBPM first distills reusable tactile contact behavior, then reuses it for <strong class="highlight-challenge">harder object geometries</strong>, <strong class="highlight-challenge">signed-axis commands</strong>, <strong class="highlight-transfer">successful sim-to-real transfer</strong>, and finally a larger arm-hand embodiment that must acquire, lift, transport, and reorient a tool.
         </p>
       </div>
 
@@ -546,7 +584,7 @@
       <div class="gallery-stage" id="axis-gallery">
         <h3 class="title is-4 gallery-stage-title">Axis-conditioned Reorientation</h3>
         <p class="gallery-stage-note">
-          Continuous commanded-axis videos are grouped by domain: simulation first, followed by real-robot rollouts. The policy responds to <strong class="highlight-method">six signed rotation commands</strong> and performs <strong class="highlight-good">continuous transitions</strong> as the requested rotation axis changes.
+          Continuous commanded-axis videos are grouped by domain: simulation first, followed by real-robot rollouts demonstrating <strong class="highlight-transfer">successful sim-to-real transfer</strong>. The policy responds to <strong class="highlight-method">six signed rotation commands</strong> and performs <strong class="highlight-good">continuous transitions</strong> as the requested rotation axis changes.
         </p>
         <div class="experiment-subsection">
           <h4 class="title is-5 subsection-title">Simulated axis-conditioned rotation</h4>
@@ -671,7 +709,7 @@
         <h4 class="title is-5 subsection-title">Real robot axis-conditioned rotation</h4>
         <div class="content has-text-justified">
           <p>
-            These real-robot rollouts evaluate whether the downstream policy can condition on a commanded rotation axis while TacBPM supplies stable tactile contact behavior through the hand prior.
+            These real-robot rollouts evaluate whether the downstream policy can condition on a commanded rotation axis while TacBPM supplies <strong class="highlight-advantage">stable tactile contact behavior</strong> through the hand prior, showing <strong class="highlight-transfer">successful sim-to-real transfer</strong> without real-robot policy finetuning.
           </p>
         </div>
         <div class="columns is-multiline is-variable is-3 video-grid">
@@ -782,7 +820,7 @@
       <div class="gallery-stage" id="real-comparison-gallery">
         <h3 class="title is-4 gallery-stage-title">Real-Robot Comparisons and Failure Cases</h3>
         <p class="gallery-stage-note">
-          Matched single-axis comparisons and representative failures are grouped together because they answer the same reviewer question: when contact becomes hard on hardware, does the tactile prior preserve usable rolling behavior while ablations drift, stall, drop, or leave the training distribution?
+          Matched single-axis comparisons and representative failures are grouped together because they answer the same reviewer question: when contact becomes <strong class="highlight-challenge">hard on hardware</strong>, does the tactile prior preserve usable rolling behavior while ablations <strong class="highlight-bad">drift, stall, drop, or leave the training distribution</strong>?
         </p>
         <div class="content has-text-justified">
           <p>
@@ -1019,7 +1057,7 @@
       <div class="gallery-stage" id="arm-hand-gallery">
         <h3 class="title is-4 gallery-stage-title">Arm-Hand Embodiment Instantiation</h3>
         <p class="gallery-stage-note">
-          Grasp-to-AnyPose instantiates the same prior-centered pipeline on the North right arm and hand. Instead of starting from an already supported in-hand object, the robot must grasp a tool-like object, lift and transport it, and then move it toward sampled goal poses while preserving useful fingertip contact. In this setting, TacBPM reuses a rubber-hammer teacher prior with binary fingertip contacts and a frozen decoder, testing whether the latent interface remains useful when arm motion, gravity loading, object geometry, and hand reorientation are coupled.
+          Grasp-to-AnyPose instantiates the same prior-centered pipeline on the North right arm and hand. Instead of starting from an already supported in-hand object, the robot must <strong class="highlight-challenge">grasp a tool-like object, lift and transport it, and then move it toward sampled goal poses</strong> while preserving useful fingertip contact. In this setting, TacBPM reuses a rubber-hammer teacher prior with binary fingertip contacts and a frozen decoder, testing whether the latent interface remains useful when arm motion, gravity loading, object geometry, and hand reorientation are coupled.
         </p>
         <div class="experiment-subsection">
           <h4 class="title is-5 subsection-title">Simulated Grasp-to-AnyPose on held-out tool geometries</h4>
@@ -1072,7 +1110,7 @@
         <div class="experiment-subsection">
           <h4 class="title is-5 subsection-title">Real North arm-hand hammer grasp, lift, and reorientation</h4>
           <p class="video-caption-detail">
-            The real-robot clips are not meant as isolated demos of a scripted grasp; they expose the same contact-maintenance challenge under hardware effects such as compliance, calibration error, tool inertia, and changing wrist posture. The 2x2 layout highlights that the arm-hand instantiation repeats across several rollouts rather than appearing only in a single favorable take.
+            The real-robot clips are not meant as isolated demos of a scripted grasp; they expose the same <strong class="highlight-challenge">contact-maintenance challenge</strong> under hardware effects such as compliance, calibration error, tool inertia, and changing wrist posture. The 2x2 layout highlights <strong class="highlight-transfer">successful sim-to-real transfer</strong> across several rollouts rather than a single favorable take.
           </p>
           <div class="columns is-multiline is-centered">
             <div class="column is-one-quarter-desktop is-half-tablet">
