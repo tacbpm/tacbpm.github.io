@@ -338,7 +338,7 @@
           <h2 class="title is-3" style="color: #006496;font-weight: bolder;">TL;DR</h2>
           <div class="content has-text-justified">
             <p>
-              <strong>TacBPM</strong> learns a contact-aware behavior prior model for dexterous reorientation. The task is difficult because policies must explore from <strong class="highlight-challenge">low-level 22-DoF hand actions</strong> while maintaining contact under <strong class="highlight-challenge">shape, scale, axis-command, and hardware shifts</strong>. TacBPM first trains sphere reorientation specialists across scale factors 0.3 to 1.0, distills them into a single variational latent controller, and reuses the frozen tactile-conditioned prior for downstream reorientation on harder objects.
+              <strong>TacBPM</strong> learns a contact-aware behavior prior model for dexterous reorientation. The task is difficult because policies must explore from <strong class="highlight-challenge">low-level 22-DoF hand actions</strong> while maintaining contact under <strong class="highlight-challenge">shape, scale, axis-command, and hardware shifts</strong>. TacBPM first trains sphere reorientation specialists across scale factors 0.3 to 1.0, corresponding to roughly <strong class="highlight-method">2.4-8 cm grasp diameters</strong> and <strong class="highlight-advantage">nearly covering the hand's reachable aperture workspace</strong>, then distills them into a single variational latent controller for downstream reuse.
             </p>
             <p>
               The downstream policy predicts only a residual latent code around the prior mean. This <strong class="highlight-advantage">keeps exploration close to stable contact behaviors</strong> while still allowing task-specific adaptation to anisotropic objects, multi-object settings, and commanded rotation axes, leading to <strong class="highlight-transfer">successful sim-to-real transfer</strong> on both real hand rotation and arm-hand hammer rollouts.
@@ -351,7 +351,7 @@
         <div class="tacbpm-card">
           <span class="tacbpm-card-label">Stage 1</span>
           <strong>Specialist behavior coverage</strong>
-          <p>Eight sphere-scale teachers expose the hand to different apertures, tactile force patterns, and rolling or regrasping regimes.</p>
+          <p>Eight sphere-scale teachers span <strong class="highlight-method">2.4-8 cm grasp diameters</strong>, <strong class="highlight-advantage">nearly covering the hand's reachable aperture workspace</strong> while exposing different tactile force patterns and rolling or regrasping regimes.</p>
         </div>
         <div class="tacbpm-card">
           <span class="tacbpm-card-label">Stage 2</span>
@@ -376,7 +376,7 @@
         <div class="ablation-summary-card">
           <span class="ablation-card-label">Teacher family</span>
           <strong>8 sphere scales</strong>
-          <p>Scale factors 0.3 to 1.0 provide clean, controllable contact behavior coverage.</p>
+          <p>Scale factors 0.3 to 1.0 map to <strong class="highlight-method">2.4-8 cm grasp diameters</strong>, giving <strong class="highlight-advantage">controlled contact behavior coverage</strong> across almost the full reachable workspace of the hand.</p>
         </div>
         <div class="ablation-summary-card">
           <span class="ablation-card-label">State</span>
@@ -469,7 +469,7 @@
       <div class="gallery-stage" id="prior-gallery">
         <h3 class="title is-4 gallery-stage-title">Generalist Prior Coverage</h3>
         <p class="gallery-stage-note">
-          TacBPM starts from multi-scale sphere teachers, where different object sizes induce different apertures, tactile forces, and rolling contacts.
+          TacBPM starts from multi-scale sphere teachers whose <strong class="highlight-method">2.4-8 cm grasp diameters</strong> nearly span the hand's reachable aperture workspace. This <strong class="highlight-advantage">controlled scale sweep</strong> is meant to cover the main contact regimes the hand can physically realize before the prior is reused on harder shapes.
         </p>
         <div class="experiment-subsection">
           <h4 class="title is-5 subsection-title">Generalist prior over sphere sizes</h4>
@@ -481,7 +481,7 @@
                 Your browser does not support the video tag.
               </video>
               <h4>Multi-scale sphere reorientation</h4>
-              <p class="video-caption-detail">The distilled TacBPM generalist handles multiple sphere scales, illustrating reusable contact behavior before downstream finetuning.</p>
+              <p class="video-caption-detail">The distilled TacBPM generalist handles sphere scales from small fingertip grasps to <strong class="highlight-method">near-maximum hand aperture</strong>, illustrating <strong class="highlight-advantage">reusable contact behavior</strong> before downstream finetuning.</p>
             </div>
           </div>
         </div>
