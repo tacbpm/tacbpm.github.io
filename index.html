@@ -1057,7 +1057,7 @@
       <div class="gallery-stage" id="arm-hand-gallery">
         <h3 class="title is-4 gallery-stage-title">Arm-Hand Embodiment Instantiation</h3>
         <p class="gallery-stage-note">
-          Grasp-to-AnyPose instantiates the same prior-centered pipeline on the North right arm and hand. Instead of starting from an already supported in-hand object, the robot must <strong class="highlight-challenge">grasp a tool-like object, lift and transport it, and then move it toward sampled goal poses</strong> while preserving useful fingertip contact. In this setting, TacBPM reuses a rubber-hammer teacher prior with binary fingertip contacts and a frozen decoder, testing whether the latent interface remains useful when arm motion, gravity loading, object geometry, and hand reorientation are coupled.
+          Grasp-to-AnyPose instantiates the same prior-centered pipeline on the North right arm and hand. Instead of starting from an already supported in-hand object, the robot must <strong class="highlight-challenge">grasp a tool-like object, lift and transport it, and then move it toward sampled goal poses</strong> while preserving useful fingertip contact. In this setting, TacBPM reuses a rubber-hammer teacher prior with fingertip contacts and a frozen decoder, testing whether the latent interface remains useful when arm motion, gravity loading, object geometry, and hand reorientation are coupled.
         </p>
         <div class="experiment-subsection">
           <h4 class="title is-5 subsection-title">Long-horizon simulated hammer transfer, 50 goals</h4>
