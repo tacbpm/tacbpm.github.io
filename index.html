@@ -1060,6 +1060,23 @@
           Grasp-to-AnyPose instantiates the same prior-centered pipeline on the North right arm and hand. Instead of starting from an already supported in-hand object, the robot must <strong class="highlight-challenge">grasp a tool-like object, lift and transport it, and then move it toward sampled goal poses</strong> while preserving useful fingertip contact. In this setting, TacBPM reuses a rubber-hammer teacher prior with binary fingertip contacts and a frozen decoder, testing whether the latent interface remains useful when arm motion, gravity loading, object geometry, and hand reorientation are coupled.
         </p>
         <div class="experiment-subsection">
+          <h4 class="title is-5 subsection-title">Long-horizon simulated hammer transfer, 50 goals</h4>
+          <div class="columns is-centered">
+            <div class="column is-four-fifths">
+              <div class="video-tile">
+                <video autoplay muted loop playsinline controls preload="none">
+                  <source data-src="./static/videos/tacbfp/arm/50_goals_goal_counter_preview.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <h4>North arm-hand hammer sequence</h4>
+                <p class="video-caption-detail">
+                  This rollout stress-tests whether the arm-hand policy can maintain <strong class="highlight-advantage">contact-stable grasp, lift, transport, and reorientation</strong> over a long sequence rather than a single goal. The visible counter marks <strong class="highlight-method">50 consecutive target goals</strong>; repeated success is important because small contact errors would otherwise accumulate into drops, OOD hand states, or failed pose reaching.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="experiment-subsection">
           <h4 class="title is-5 subsection-title">Simulated Grasp-to-AnyPose on held-out tool geometries</h4>
           <p class="video-caption-detail">
             The four simulation clips show category-level generalization from the rubber-hammer teacher family to new tool geometries. Each rollout requires the policy to acquire the object, maintain contact through lift and transport, and reduce both position and orientation error toward a random goal pose.
