@@ -321,9 +321,9 @@
             <a href="#" class="caption-time video-seek-link">37.2-42.2 s</a> single-axis multiface comparisons,
             <a href="#" class="caption-time video-seek-link">42.2-46.2 s</a> challenging +z tennis comparisons,
             <a href="#" class="caption-time video-seek-link">46.2-54.2 s</a> arm-hand consecutive-goal transfer,
-            <a href="#" class="caption-time video-seek-link">54.2-57.7 s</a> arm-hand held-out tool transfer,
-            <a href="#" class="caption-time video-seek-link">57.7-62.7 s</a> successful real arm-hand transfer,
-            <a href="#" class="caption-time video-seek-link">62.7-65.2 s</a> takeaway.
+            <a href="#" class="caption-time video-seek-link">54.2-59.2 s</a> arm-hand held-out tool transfer,
+            <a href="#" class="caption-time video-seek-link">59.2-64.2 s</a> successful real arm-hand transfer,
+            <a href="#" class="caption-time video-seek-link">64.2-66.7 s</a> takeaway.
             For compact presentation, some clips are played back faster than real time.
           </p>
         </div>
@@ -440,7 +440,7 @@
             </tr>
             <tr>
               <td>Arm-hand generalization</td>
-              <td>Held-out Grasp-to-AnyPose tools</td>
+              <td>Diverse Grasp-to-AnyPose tools</td>
               <td><strong>96.73% avg success</strong> vs. 49.24% raw-action PPO</td>
               <td>The same prior-centered paradigm scales to coupled grasp, lift, transport, and goal-pose reaching.</td>
             </tr>
@@ -1055,7 +1055,7 @@
       </div>
 
       <div class="gallery-stage" id="arm-hand-gallery">
-        <h3 class="title is-4 gallery-stage-title">Arm-Hand Embodiment Instantiation</h3>
+        <h3 class="title is-4 gallery-stage-title">Arm-Hand Reorientation</h3>
         <p class="gallery-stage-note">
           Grasp-to-AnyPose instantiates the same prior-centered pipeline on the North right arm and hand. Instead of starting from an already supported in-hand object, the robot must <strong class="highlight-challenge">grasp a tool-like object, lift and transport it, and then move it toward sampled goal poses</strong> while preserving useful fingertip contact. In this setting, TacBPM reuses a rubber-hammer teacher prior with fingertip contacts and a frozen decoder, testing whether the latent interface remains useful when arm motion, gravity loading, object geometry, and hand reorientation are coupled.
         </p>
@@ -1064,7 +1064,7 @@
           <div class="columns is-centered">
             <div class="column is-four-fifths">
               <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
+                <video autoplay muted loop playsinline preload="none">
                   <source data-src="./static/videos/tacbfp/arm/50_goals_goal_counter_preview.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
@@ -1084,7 +1084,7 @@
           <div class="columns is-multiline is-centered">
             <div class="column is-one-quarter-desktop is-half-tablet">
               <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
+                <video autoplay muted loop playsinline preload="none">
                   <source data-src="./static/videos/tacbfp/arm/sim/small_hammer.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
@@ -1094,7 +1094,7 @@
             </div>
             <div class="column is-one-quarter-desktop is-half-tablet">
               <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
+                <video autoplay muted loop playsinline preload="none">
                   <source data-src="./static/videos/tacbfp/arm/sim/blue_brush.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
@@ -1104,7 +1104,7 @@
             </div>
             <div class="column is-one-quarter-desktop is-half-tablet">
               <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
+                <video autoplay muted loop playsinline preload="none">
                   <source data-src="./static/videos/tacbfp/arm/sim/staples_marker.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
@@ -1114,7 +1114,7 @@
             </div>
             <div class="column is-one-quarter-desktop is-half-tablet">
               <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
+                <video autoplay muted loop playsinline preload="none">
                   <source data-src="./static/videos/tacbfp/arm/sim/mallet_hammer.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
@@ -1125,48 +1125,48 @@
           </div>
         </div>
         <div class="experiment-subsection">
-          <h4 class="title is-5 subsection-title">Real North arm-hand hammer grasp, lift, and reorientation</h4>
+          <h4 class="title is-5 subsection-title">Real Sharpa-North arm-hand hammer grasp, lift, and reorientation from diverse starts</h4>
           <p class="video-caption-detail">
             The real-robot clips are not meant as isolated demos of a scripted grasp; they expose the same <strong class="highlight-challenge">contact-maintenance challenge</strong> under hardware effects such as compliance, calibration error, tool inertia, and changing wrist posture. The 2x2 layout highlights <strong class="highlight-transfer">successful sim-to-real transfer</strong> across several rollouts rather than a single favorable take.
           </p>
           <div class="columns is-multiline is-centered">
             <div class="column is-one-quarter-desktop is-half-tablet">
               <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
+                <video autoplay muted loop playsinline preload="none">
                   <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq1_h264.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
-                <h4>Real rollout 1</h4>
+                <h4>Sim-to-real Inference 1</h4>
                 <p class="video-caption-detail">Initial tool acquisition: the arm places the hand while the fingers stabilize an asymmetric hammer instead of a compact object.</p>
               </div>
             </div>
             <div class="column is-one-quarter-desktop is-half-tablet">
               <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
+                <video autoplay muted loop playsinline preload="none">
                   <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq2_h264.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
-                <h4>Real rollout 2</h4>
+                <h4>Sim-to-real Inference 2</h4>
                 <p class="video-caption-detail">Lift under changing load: contact must remain usable as gravity and the hammer's moment arm perturb the grasp.</p>
               </div>
             </div>
             <div class="column is-one-quarter-desktop is-half-tablet">
               <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
+                <video autoplay muted loop playsinline preload="none">
                   <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq3_h264.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
-                <h4>Real rollout 3</h4>
+                <h4>Sim-to-real Inference 3</h4>
                 <p class="video-caption-detail">Post-lift pose adjustment: the hand reorients the hammer after support is removed, where small slips can quickly compound.</p>
               </div>
             </div>
             <div class="column is-one-quarter-desktop is-half-tablet">
               <div class="video-tile">
-                <video autoplay muted loop playsinline controls preload="none">
+                <video autoplay muted loop playsinline preload="none">
                   <source data-src="./static/videos/tacbfp/arm/grasp_repose_real/seq4_h264.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
-                <h4>Real rollout 4</h4>
+                <h4>Sim-to-real Inference 4</h4>
                 <p class="video-caption-detail">Repeated hardware validation: the same prior-centered interface supports another grasp-lift-reorientation rollout.</p>
               </div>
             </div>
