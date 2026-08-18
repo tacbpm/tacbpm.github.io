@@ -365,37 +365,6 @@
         </div>
       </div>
 
-    <div class="experiment-subsection" id="method">
-      <h2 class="title is-3 has-text-centered" style="color: #006496;font-weight: bolder;">Method Overview</h2>
-      <div class="content has-text-justified">
-        <p>
-          TacBPM treats tactile sensing as part of the hand action interface rather than as an auxiliary observation. The prior predicts a latent action distribution from the current tactile-proprioceptive interaction state; the decoder maps the selected latent code back to hand commands. During downstream learning, the policy outputs <span class="highlight-method">a residual latent action</span> added to the prior mean, so it can adapt intent without abandoning the distilled contact behavior.
-        </p>
-      </div>
-      <div class="ablation-summary-grid">
-        <div class="ablation-summary-card">
-          <span class="ablation-card-label">Teacher family</span>
-          <strong>8 sphere scales</strong>
-          <p>Scale factors 0.3 to 1.0 map to <strong class="highlight-method">2.4-8 cm grasp diameters</strong>, giving controlled contact behavior coverage across almost the full reachable workspace of the hand.</p>
-        </div>
-        <div class="ablation-summary-card">
-          <span class="ablation-card-label">State</span>
-          <strong>3-frame tactile history</strong>
-          <p>Joint state, previous action targets, contact magnitudes, and 3D contact positions are concatenated into the behavior model.</p>
-        </div>
-        <div class="ablation-summary-card">
-          <span class="ablation-card-label">Latent action</span>
-          <strong>16-D residual code</strong>
-          <p>The downstream policy controls the hand through a compact latent correction around the learned prior.</p>
-        </div>
-        <div class="ablation-summary-card">
-          <span class="ablation-card-label">Reuse</span>
-          <strong>Frozen prior interface</strong>
-          <p>The same tactile prior anchors downstream object reorientation, multi-object settings, and axis-conditioned rotation while the decoder adapts to downstream geometry.</p>
-        </div>
-      </div>
-    </div>
-
     <div class="experiment-subsection" id="results">
       <h2 class="title is-3 has-text-centered" style="color: #006496;font-weight: bolder;">Representative Results</h2>
       <div class="content has-text-justified">
@@ -471,8 +440,6 @@
         <p class="gallery-stage-note">
           TacBPM starts from multi-scale sphere teachers whose <strong class="highlight-method">2.4-8 cm grasp diameters</strong> nearly span the hand's reachable aperture workspace. This <strong class="highlight-advantage">controlled scale sweep</strong> is meant to cover the main contact regimes the hand can physically realize before the prior is reused on harder shapes.
         </p>
-        <div class="experiment-subsection">
-          <h4 class="title is-5 subsection-title">Generalist prior over sphere sizes</h4>
         <div class="columns is-centered">
           <div class="column is-four-fifths">
             <div class="video-tile">
@@ -485,7 +452,6 @@
             </div>
           </div>
         </div>
-      </div>
       </div>
 
       <div class="gallery-stage" id="downstream-gallery">
@@ -1147,6 +1113,7 @@
                   Your browser does not support the video tag.
                 </video>
                 <h4>Sim-to-real Inference 2</h4>
+                <p class="video-caption-detail">Lift under changing load: contact must remain usable as gravity and the hammer's moment arm perturb the grasp.</p>
               </div>
             </div>
             <div class="column is-one-quarter-desktop is-half-tablet">
@@ -1156,6 +1123,7 @@
                   Your browser does not support the video tag.
                 </video>
                 <h4>Sim-to-real Inference 3</h4>
+                <p class="video-caption-detail">Post-lift pose adjustment: the hand reorients the hammer after support is removed, where small slips can quickly compound.</p>
               </div>
             </div>
             <div class="column is-one-quarter-desktop is-half-tablet">
@@ -1165,6 +1133,7 @@
                   Your browser does not support the video tag.
                 </video>
                 <h4>Sim-to-real Inference 4</h4>
+                <p class="video-caption-detail">Repeated hardware validation: the same prior-centered interface supports another grasp-lift-reorientation rollout.</p>
               </div>
             </div>
           </div>
